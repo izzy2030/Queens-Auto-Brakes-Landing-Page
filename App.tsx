@@ -51,6 +51,7 @@ const App: React.FC = () => {
          <div className="background-top-gradient"></div>
          <div className="background-glow-1"></div>
          <div className="background-glow-2"></div>
+         <div className="background-glow-center"></div>
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto">

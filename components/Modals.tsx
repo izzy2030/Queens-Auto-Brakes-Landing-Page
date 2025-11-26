@@ -8,26 +8,37 @@ interface ModalsProps {
 const Modals: React.FC<ModalsProps> = ({ t }) => {
   const [showExit, setShowExit] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const [hasShownExit, setHasShownExit] = useState(false);
 
   useEffect(() => {
+    let exitTimer: NodeJS.Timeout;
+
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !hasShownExit) {
-        setShowExit(true);
-        setHasShownExit(true);
+      const exitIntentShown = sessionStorage.getItem('exitIntentShown');
+      if (e.clientY <= 0 && !exitIntentShown) {
+        exitTimer = setTimeout(() => {
+          setShowExit(true);
+          sessionStorage.setItem('exitIntentShown', 'true');
+        }, 1000);
       }
+    };
+
+    const handleMouseEnter = () => {
+      clearTimeout(exitTimer);
     };
 
     const handleOpenDetails = () => setShowDetails(true);
 
     document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('openDetails', handleOpenDetails);
 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('openDetails', handleOpenDetails);
+      clearTimeout(exitTimer);
     };
-  }, [hasShownExit]);
+  }, []);
 
   return (
     <>
