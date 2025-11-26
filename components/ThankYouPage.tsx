@@ -89,7 +89,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
   const hasAudio = !!(data?.audioUrl || sessionStorage.getItem('customAudioUrl'));
 
   return (
-    <div className="min-h-screen bg-[#06080f] text-gray-300 font-sans flex flex-col">
+    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
       <header className="py-6 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -104,7 +104,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
             />
           </div>
           <nav className="flex items-center space-x-4">
-            <a href="/" className="px-5 py-2 text-sm font-semibold bg-white text-gray-900 rounded-full hover:bg-gray-300 transition-colors">
+            <a href="/" className="px-5 py-2 text-sm font-semibold bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors">
               Back to Home
             </a>
           </nav>
@@ -159,10 +159,10 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               ></path>
             </svg>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
             You're All Set, <span className="text-cyan-400">{displayName}!</span>
           </h1>
-          <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto">
+          <p className="text-lg text-foreground/80 mb-8 max-w-lg mx-auto">
             Your appointment is confirmed. We've saved your spot and sent a
             reminder to your phone.
           </p>
@@ -212,8 +212,8 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
 
           <div className="space-y-6">
             <div className="p-[2px] rounded-lg bg-gradient-to-r from-cyan-400 via-transparent to-cyan-400 bg-[length:15px_15px]">
-              <div className="bg-[#111827] rounded-[10px] p-8 border border-cyan-500/30 border-dashed">
-                <p className="text-sm text-gray-400 mb-2">
+              <div className="bg-card rounded-[10px] p-8 border border-cyan-500/30 border-dashed">
+                <p className="text-sm text-foreground/80 mb-2">
                   Here is your exclusive savings code. Show it at the shop to get
                   your discount:
                 </p>
@@ -243,27 +243,27 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
                 </div>
               </div>
             </div>
-            <div className="bg-[#111827] rounded-lg p-6 text-left grid grid-cols-1 sm:grid-cols-3 gap-6 border border-gray-800">
+            <div className="bg-card rounded-lg p-6 text-left grid grid-cols-1 sm:grid-cols-3 gap-6 border border-border">
               <div>
-                <p className="text-xs text-gray-400 mb-1">Name</p>
-                <p className="font-semibold text-white">{displayName}</p>
+                <p className="text-xs text-foreground/80 mb-1">Name</p>
+                <p className="font-semibold text-foreground">{displayName}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-400 mb-1">Vehicle</p>
-                <p className="font-semibold text-white">{data?.vehicle || 'Your Vehicle'}</p>
+                <p className="text-xs text-foreground/80 mb-1">Vehicle</p>
+                <p className="font-semibold text-foreground">{data?.vehicle || 'Your Vehicle'}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-400 mb-1">Appointment</p>
-                <p className="font-semibold text-white">
+                <p className="text-xs text-foreground/80 mb-1">Appointment</p>
+                <p className="font-semibold text-foreground">
                   {data ? `${data.date} at ${data.time}` : 'Pending Confirmation'}
                 </p>
               </div>
             </div>
-            <div className="bg-[#111827] rounded-lg p-8 text-left border border-gray-800">
-              <h3 className="text-lg font-bold text-white mb-4">
+            <div className="bg-card rounded-lg p-8 text-left border border-border">
+              <h3 className="text-lg font-bold text-foreground mb-4">
                 What Happens Next?
               </h3>
-              <ol className="list-decimal list-inside space-y-3 text-gray-400">
+              <ol className="list-decimal list-inside space-y-3 text-foreground/80">
                 <li>Check your text messages for a confirmation.</li>
                 <li>
                   A team member will call you shortly to confirm all the
@@ -276,29 +276,29 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               </ol>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
-                <h3 className="text-lg font-bold text-white mb-2">
+              <div className="bg-card rounded-lg p-8 border border-border">
+                <h3 className="text-lg font-bold text-foreground mb-2">
                   Need to Reschedule?
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-foreground/80 mb-6">
                   No problem. Give us a call and we'll find a better time.
                 </p>
                 <a
-                  className="inline-block w-full max-w-xs px-6 py-3 border border-gray-600 rounded-full text-white font-semibold hover:bg-gray-800 transition-colors text-center"
+                  className="inline-block w-full max-w-xs px-6 py-3 border border-border rounded-full text-foreground font-semibold hover:bg-secondary transition-colors text-center"
                   href="tel:847-844-1700"
                 >
                   (847) 844-1700
                 </a>
               </div>
-              <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
-                <h3 className="text-lg font-bold text-white mb-2">
+              <div className="bg-card rounded-lg p-8 border border-border">
+                <h3 className="text-lg font-bold text-foreground mb-2">
                   Where to Find Us
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-foreground/80 mb-6">
                   2401 E Algonquin Rd, Algonquin, IL 60102
                 </p>
                 <a
-                  className="inline-block w-full max-w-xs px-6 py-3 border border-gray-600 rounded-full text-white font-semibold hover:bg-gray-800 transition-colors text-center"
+                  className="inline-block w-full max-w-xs px-6 py-3 border border-border rounded-full text-foreground font-semibold hover:bg-secondary transition-colors text-center"
                   href="https://maps.google.com/?q=2401+E+Algonquin+Rd,+Algonquin,+IL+60102"
                   target="_blank"
                   rel="noreferrer"
@@ -310,7 +310,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
           </div>
         </div>
       </main>
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-foreground/60">
         <div className="container mx-auto">
           <p>
             © 2025 Queens Auto Service. All Rights Reserved. |{" "}
