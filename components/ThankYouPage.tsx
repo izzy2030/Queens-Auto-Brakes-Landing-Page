@@ -89,13 +89,13 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
   const hasAudio = !!(data?.audioUrl || sessionStorage.getItem('customAudioUrl'));
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
-      <header className="py-6 px-4 sm:px-6 lg:px-8 border-b border-border/40">
+    <div className="min-h-screen bg-[#06080f] text-gray-300 font-sans flex flex-col">
+      <header className="py-6 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <img
               alt="Queens logo"
-              className="h-12 w-auto"
+              className="h-10 w-auto"
               src="https://queensautoserviceselgin.com/wp-content/uploads/2024/11/Logo-White.webp"
               onError={(e) =>
                 ((e.target as HTMLImageElement).src =
@@ -104,7 +104,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
             />
           </div>
           <nav className="flex items-center space-x-4">
-            <a href="/" className="px-6 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <a href="/" className="px-5 py-2 text-sm font-semibold bg-white text-gray-900 rounded-full hover:bg-gray-300 transition-colors">
               Back to Home
             </a>
           </nav>
@@ -115,7 +115,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
         <div className="max-w-3xl w-full">
           <div className="mb-6">
             <svg
-              className="mx-auto h-20 w-20 text-primary"
+              className="mx-auto h-20 w-20 text-cyan-400"
               fill="none"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -159,10 +159,10 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               ></path>
             </svg>
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-primary mb-6 tracking-tight">
-            You're All Set, <span className="text-highlight relative z-10">{displayName}!</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+            You're All Set, <span className="text-cyan-400">{displayName}!</span>
           </h1>
-          <p className="text-xl text-foreground/70 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto">
             Your appointment is confirmed. We've saved your spot and sent a
             reminder to your phone.
           </p>
@@ -173,10 +173,10 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               <div className="mb-12">
                   <button
                       onClick={handleStartAudio}
-                      className="group relative inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-bold text-primary-foreground transition-all duration-300 bg-primary rounded-full hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                      className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] hover:scale-105 active:scale-95 animate-pulse"
                   >
                       <svg 
-                        className="w-6 h-6 mr-3 fill-current" 
+                        className="w-5 h-5 mr-3 fill-current" 
                         viewBox="0 0 24 24" 
                         xmlns="http://www.w3.org/2000/svg"
                       >
@@ -211,28 +211,23 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
           )}
 
           <div className="space-y-6">
-            <div className="glass-card p-8 md:p-10 mb-8 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full -ml-16 -mb-16 blur-3xl"></div>
-              
-              <div className="relative z-10">
-                <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-4">
-                  Your Exclusive Savings Code
+            <div className="p-[2px] rounded-lg bg-gradient-to-r from-cyan-400 via-transparent to-cyan-400 bg-[length:15px_15px]">
+              <div className="bg-[#111827] rounded-[10px] p-8 border border-cyan-500/30 border-dashed">
+                <p className="text-sm text-gray-400 mb-2">
+                  Here is your exclusive savings code. Show it at the shop to get
+                  your discount:
                 </p>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                  <div className="bg-secondary/50 px-8 py-4 rounded-2xl border border-border/50">
-                    <span className="text-5xl md:text-6xl font-black tracking-widest text-primary font-mono">
-                      {couponCode}
-                    </span>
-                  </div>
+                <div className="flex items-center justify-center space-x-4">
+                  <span className="text-4xl md:text-5xl font-bold tracking-widest text-cyan-400">
+                    {couponCode}
+                  </span>
                   <button
-                    className="p-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl active:scale-95"
+                    className="p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
                     onClick={() => navigator.clipboard.writeText(couponCode)}
-                    title="Copy Code"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
+                      className="h-6 w-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -246,71 +241,64 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
                     </svg>
                   </button>
                 </div>
-                <p className="mt-4 text-sm text-foreground/60">
-                  Show this code at the shop to claim your discount.
-                </p>
               </div>
             </div>
-            <div className="glass-card p-8 text-left grid grid-cols-1 sm:grid-cols-3 gap-8">
-              <div className="space-y-1">
-                <p className="text-xs font-bold text-foreground/40 uppercase tracking-wider">Name</p>
-                <p className="font-bold text-lg text-primary">{displayName}</p>
+            <div className="bg-[#111827] rounded-lg p-6 text-left grid grid-cols-1 sm:grid-cols-3 gap-6 border border-gray-800">
+              <div>
+                <p className="text-xs text-gray-400 mb-1">Name</p>
+                <p className="font-semibold text-white">{displayName}</p>
               </div>
-              <div className="space-y-1">
-                <p className="text-xs font-bold text-foreground/40 uppercase tracking-wider">Vehicle</p>
-                <p className="font-bold text-lg text-primary">{data?.vehicle || 'Your Vehicle'}</p>
+              <div>
+                <p className="text-xs text-gray-400 mb-1">Vehicle</p>
+                <p className="font-semibold text-white">{data?.vehicle || 'Your Vehicle'}</p>
               </div>
-              <div className="space-y-1">
-                <p className="text-xs font-bold text-foreground/40 uppercase tracking-wider">Appointment</p>
-                <p className="font-bold text-lg text-primary">
+              <div>
+                <p className="text-xs text-gray-400 mb-1">Appointment</p>
+                <p className="font-semibold text-white">
                   {data ? `${data.date} at ${data.time}` : 'Pending Confirmation'}
                 </p>
               </div>
             </div>
-            <div className="glass-card p-8 text-left">
-              <h3 className="text-xl font-bold text-primary mb-6 flex items-center">
-                <span className="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center mr-3 text-sm">?</span>
+            <div className="bg-[#111827] rounded-lg p-8 text-left border border-gray-800">
+              <h3 className="text-lg font-bold text-white mb-4">
                 What Happens Next?
               </h3>
-              <div className="space-y-4">
-                {[
-                  "Check your text messages for a confirmation.",
-                  "A team member will call you shortly to confirm all the details.",
-                  "Head to the shop at your scheduled time. We'll be ready for you!"
-                ].map((step, idx) => (
-                  <div key={idx} className="flex items-start">
-                    <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold mr-4 mt-0.5 flex-shrink-0">
-                      {idx + 1}
-                    </div>
-                    <p className="text-foreground/80">{step}</p>
-                  </div>
-                ))}
-              </div>
+              <ol className="list-decimal list-inside space-y-3 text-gray-400">
+                <li>Check your text messages for a confirmation.</li>
+                <li>
+                  A team member will call you shortly to confirm all the
+                  details.
+                </li>
+                <li>
+                  Head to the shop at your scheduled time. We'll be ready for
+                  you!
+                </li>
+              </ol>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="glass-card p-8 hover:bg-white/80 transition-colors">
-                <h3 className="text-lg font-bold text-primary mb-3">
+              <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
+                <h3 className="text-lg font-bold text-white mb-2">
                   Need to Reschedule?
                 </h3>
-                <p className="text-foreground/60 mb-6 text-sm">
+                <p className="text-gray-400 mb-6">
                   No problem. Give us a call and we'll find a better time.
                 </p>
                 <a
-                  className="inline-flex items-center justify-center w-full px-6 py-3 border-2 border-primary/10 rounded-xl text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300"
+                  className="inline-block w-full max-w-xs px-6 py-3 border border-gray-600 rounded-full text-white font-semibold hover:bg-gray-800 transition-colors text-center"
                   href="tel:847-844-1700"
                 >
                   (847) 844-1700
                 </a>
               </div>
-              <div className="glass-card p-8 hover:bg-white/80 transition-colors">
-                <h3 className="text-lg font-bold text-primary mb-3">
+              <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
+                <h3 className="text-lg font-bold text-white mb-2">
                   Where to Find Us
                 </h3>
-                <p className="text-foreground/60 mb-6 text-sm">
+                <p className="text-gray-400 mb-6">
                   2401 E Algonquin Rd, Algonquin, IL 60102
                 </p>
                 <a
-                  className="inline-flex items-center justify-center w-full px-6 py-3 border-2 border-primary/10 rounded-xl text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300"
+                  className="inline-block w-full max-w-xs px-6 py-3 border border-gray-600 rounded-full text-white font-semibold hover:bg-gray-800 transition-colors text-center"
                   href="https://maps.google.com/?q=2401+E+Algonquin+Rd,+Algonquin,+IL+60102"
                   target="_blank"
                   rel="noreferrer"
@@ -322,15 +310,15 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
           </div>
         </div>
       </main>
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-foreground/60">
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
         <div className="container mx-auto">
           <p>
             © 2025 Queens Auto Service. All Rights Reserved. |{" "}
-            <a className="hover:text-primary" href="#">
+            <a className="hover:text-cyan-400" href="#">
               Privacy Policy
             </a>{" "}
             |{" "}
-            <a className="hover:text-primary" href="#">
+            <a className="hover:text-cyan-400" href="#">
               Terms of Use
             </a>
           </p>
