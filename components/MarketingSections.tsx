@@ -379,7 +379,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
               <h4 className="text-foreground text-lg font-semibold mb-1 text-left">
                 {t(`feature${n}Title` as any)}
               </h4>
-              <p className="text-foreground/80 text-sm opacity-85 text-left">
+              <p className="text-foreground text-sm text-left">
                 {t(`feature${n}Body` as any)}
               </p>
             </div>
@@ -638,4 +638,3 @@ export const ServiceAreaSection: React.FC<SectionProps> = ({ t }) => (
     </div>
   </section>
 );
-
