@@ -11,10 +11,16 @@ const StickyBanner: React.FC<StickyBannerProps> = ({ t }) => {
   useEffect(() => {
     const handleScroll = () => {
       const bookingForm = document.getElementById('book');
-      if (bookingForm) {
-        const rect = bookingForm.getBoundingClientRect();
-        const formPassedViewport = rect.bottom < 0;
-        setIsVisible(formPassedViewport);
+      const footer = document.querySelector('footer');
+
+      if (bookingForm && footer) {
+        const bookingRect = bookingForm.getBoundingClientRect();
+        const footerRect = footer.getBoundingClientRect();
+
+        const formPassedViewport = bookingRect.bottom < 0;
+        const footerInViewport = footerRect.top < window.innerHeight;
+
+        setIsVisible(formPassedViewport && !footerInViewport);
       }
     };
 
