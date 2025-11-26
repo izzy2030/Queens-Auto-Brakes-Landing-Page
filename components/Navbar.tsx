@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
                   Spa
                 </button>
             </div>
-            <a href="#book" className="hidden sm:inline-block glass-card px-4 py-2 rounded-lg text-white hover:bg-white/10 transition">
+            <a href="#book" className="hidden sm:inline-block px-5 py-2 text-sm font-semibold bg-white text-gray-900 rounded-full hover:bg-gray-300 transition-colors">
               {t('bookNow')}
             </a>
         </div>
