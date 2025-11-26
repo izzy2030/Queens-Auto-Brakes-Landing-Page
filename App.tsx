@@ -53,7 +53,7 @@ const App: React.FC = () => {
          <div className="background-glow-2"></div>
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto">
+      <div className="relative z-10 max-w-[1200px] mx-auto">
         <Navbar lang={lang} setLang={handleLangChange} t={t} />
 
         <HeroSection t={t} />
