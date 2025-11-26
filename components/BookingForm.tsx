@@ -222,8 +222,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
 
   return (
     <section id="book" className="relative z-10 px-4 sm:px-6 lg:px-8 py-20">
-      <div className="max-w-2xl mx-auto animated-gradient-border p-[3px] rounded-2xl shadow-2xl shadow-blue-500/20">
-        <div className="bg-card/90 backdrop-blur-xl rounded-xl p-6 sm:p-8">
+      <div className="max-w-2xl mx-auto animated-gradient-border shadow-2xl shadow-cyan-500/20">
+        <div className="bg-card/95 backdrop-blur-xl rounded-xl p-6 sm:p-8">
             <div className="text-center">
             <h2 className="text-3xl font-bold text-foreground">{t('formTitle')}</h2>
             <p className="mt-2 text-lg text-foreground/80">
