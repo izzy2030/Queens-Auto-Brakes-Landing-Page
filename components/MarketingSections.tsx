@@ -16,7 +16,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => (
             <p className="text-lg text-white/70 mx-auto max-w-2xl">{t('heroSubtitle')}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center px-4">
           <div className="relative">
             <div className="hero-gradient absolute inset-0 rounded-2xl rotate-3 scale-105 opacity-30"></div>
             <div className="glass-card relative rounded-2xl p-3 shadow-xl">
@@ -51,7 +51,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => (
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center md:text-left">{t('scarcityLine')}</p>
             </div>
              
-            <div className="mt-8 flex items-center space-x-6">
+            <div className="mt-8 flex items-center justify-center md:justify-start space-x-6">
                 <div className="flex -space-x-2">
                     <img className="w-10 h-10 rounded-full border-2 border-slate-700" src="https://queensautoserviceselgin.com/wp-content/uploads/2025/05/Lavira-Johnson.png" alt="Happy Customer 1" />
                     <img className="w-10 h-10 rounded-full border-2 border-slate-700" src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Chris-Muller.png" alt="Happy Customer 2" />
