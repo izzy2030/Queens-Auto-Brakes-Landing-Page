@@ -325,7 +325,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
           />
         </div>
         <div>
-          <p className="text-sm font-extrabold uppercase mb-2 text-white rounded-full px-4 py-2 inline-flex items-center shadow-lg bg-gradient-to-br from-red-500 to-orange-500">
+          <p className="text-sm font-extrabold uppercase mb-2 text-destructive-foreground rounded-full px-4 py-2 inline-flex items-center shadow-lg bg-destructive">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 mr-2 flex-shrink-0"
@@ -352,7 +352,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
               "Vehicles",
             ].map((k) => (
               <li key={k} className="flex items-start gap-2">
-                <span className="text-green-400 text-lg font-bold">✓</span>
+                <span className="text-primary text-lg font-bold">✓</span>
                 <span
                   dangerouslySetInnerHTML={{ __html: t(`bullet${k}` as any) }}
                 ></span>
@@ -373,7 +373,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
         {[1, 2, 3, 4].map((n) => (
           <div
             key={n}
-            className={`bg-white dark:!bg-slate-900 border border-slate-200/50 dark:!border-slate-700 p-6 rounded-xl flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors animate-on-scroll fade-up delay-${n} shadow-sm group`}
+            className={`bg-card border border-border p-6 rounded-xl flex justify-between items-center hover:bg-secondary/80 transition-colors animate-on-scroll fade-up delay-${n} shadow-sm group`}
           >
             <div>
               <h4 className="text-foreground text-lg font-semibold mb-1 text-left">
