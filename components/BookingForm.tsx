@@ -241,21 +241,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-medium text-foreground/80 mb-1">{t('firstName')}</label>
-                        <input type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <input type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-foreground/80 mb-1">{t('lastName')}</label>
-                        <input type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <input type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                         <label className="block text-sm font-medium text-foreground/80 mb-1">{t('email')}</label>
-                        <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-foreground/80 mb-1">{t('mobileNumber')}</label>
-                        <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     </div>
                     <div className="space-y-4 pt-2">
@@ -263,18 +263,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carYear')}</label>
-                                <select name="carYear" required value={formData.carYear} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm">
+                                <select name="carYear" required value={formData.carYear} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm">
                                     <option value="">Select</option>
                                     {years.map(y => <option key={y} value={y}>{y}</option>)}
                                 </select>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carMake')}</label>
-                                <input type="text" name="carMake" required value={formData.carMake} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                                <input type="text" name="carMake" required value={formData.carMake} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carModel')}</label>
-                                <input type="text" name="carModel" required value={formData.carModel} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                                <input type="text" name="carModel" required value={formData.carModel} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-700 rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                             </div>
                         </div>
                     </div>

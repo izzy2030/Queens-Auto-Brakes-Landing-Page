@@ -13,7 +13,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     >
       <div className="max-w-8xl mx-auto">
         <div className="text-center mb-12">
-          <span className="glass-card inline-block px-4 py-2 rounded-full text-primary text-sm font-medium mb-6 animate-on-scroll fade-up delay-0">
+          <span className="inline-block px-6 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold mb-8 animate-on-scroll fade-up delay-0 shadow-lg">
             {t("limitedSlots")}
           </span>
           <h1
@@ -28,12 +28,12 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
         <div className="grid md:grid-cols-2 gap-12 items-center px-4">
           <div className="relative">
             <div className="hero-gradient absolute inset-0 rounded-2xl rotate-3 scale-105 opacity-30"></div>
-            <div className="glass-card relative rounded-2xl p-3 shadow-xl">
-              <div className="bg-secondary rounded-xl overflow-hidden">
+            <div className="relative rounded-3xl p-2 bg-white dark:bg-slate-800 shadow-2xl ring-1 ring-black/5">
+              <div className="rounded-2xl overflow-hidden">
                 <img
                   src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Queens-Auto-Brake-Repair-Before-and-After-0001.webp"
                   alt="New Brakes"
-                  className="w-full h-auto"
+                  className="w-full h-auto object-cover"
                   onError={(e) =>
                     ((e.target as HTMLImageElement).src =
                       "https://placehold.co/600x400/1e293b/ffffff?text=Brake+Service")
@@ -207,7 +207,7 @@ export const PromiseSection: React.FC<SectionProps> = ({ t }) => {
         {[1, 2, 3, 4].map((num, idx) => (
           <div
             key={num}
-            className={`glass-card p-8 rounded-2xl flex flex-col items-center text-center group hover:bg-secondary/20 transition-all duration-300 animate-on-scroll fade-up delay-${idx}`}
+            className={`bg-white dark:!bg-slate-900 border border-slate-200/50 dark:!border-slate-700 p-8 rounded-2xl flex flex-col items-center text-center group hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300 animate-on-scroll fade-up delay-${idx} shadow-sm`}
           >
             <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-primary mb-6 group-hover:bg-blue-500/20 transition-colors">
               {icons[idx]}
@@ -373,7 +373,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
         {[1, 2, 3, 4].map((n) => (
           <div
             key={n}
-            className={`bg-secondary/10 border border-border p-6 rounded-xl flex justify-between items-center hover:bg-secondary/20 transition-colors animate-on-scroll fade-up delay-${n}`}
+            className={`bg-white dark:!bg-slate-900 border border-slate-200/50 dark:!border-slate-700 p-6 rounded-xl flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors animate-on-scroll fade-up delay-${n} shadow-sm group`}
           >
             <div>
               <h4 className="text-foreground text-lg font-semibold mb-1 text-left">
