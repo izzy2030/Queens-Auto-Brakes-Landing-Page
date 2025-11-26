@@ -53,35 +53,35 @@ const App: React.FC = () => {
          <div className="background-glow-2"></div>
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-[1440px] mx-auto">
         <Navbar lang={lang} setLang={handleLangChange} t={t} />
-        
+
         <HeroSection t={t} />
 
         <PromiseSection t={t} />
-        
+
         <BookingForm t={t} lang={lang} />
-        
+
         <Testimonials t={t} />
-        
+
         <WhenToReplaceSection t={t} />
-        
+
         <ExpertBrakeSection t={t} />
-        
+
         <WhyImportantSection t={t} />
-        
+
         <TrustSignalsSection t={t} />
-        
+
         <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent my-16 max-w-8xl mx-auto"></div>
-        
+
         <AboutSection t={t} />
-        
+
         <ParallaxSection t={t} />
-        
+
         <ServiceAreaSection t={t} />
-        
+
         <FAQ t={t} />
-        
+
         <Footer t={t} />
       </div>
 
