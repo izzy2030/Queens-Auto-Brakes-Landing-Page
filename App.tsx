@@ -52,7 +52,7 @@ const App: React.FC = () => {
   };
 
   if (currentPath === '/thank-you') {
-    return <ThankYouPage />;
+    return <ThankYouPage lang={lang} />;
   }
 
   return (

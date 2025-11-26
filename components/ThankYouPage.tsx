@@ -1,22 +1,92 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import confetti from 'canvas-confetti';
+import { LangType } from '../types';
 
 interface BookingData {
   name: string;
   vehicle: string;
   date: string;
   time: string;
+  couponCode?: string;
+  audioUrl?: string;
 }
 
-const ThankYouPage: React.FC = () => {
+interface ThankYouPageProps {
+  lang?: LangType;
+}
+
+const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
   const [data, setData] = useState<BookingData | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
+    // Scroll to top on load
+    window.scrollTo(0, 0);
+
+    // Trigger confetti
+    // Trigger confetti - Center
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+    // Trigger confetti - Left Cannon
+    confetti({
+      particleCount: 100,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0, y: 0.6 }
+    });
+
+    // Trigger confetti - Right Cannon
+    confetti({
+      particleCount: 100,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1, y: 0.6 }
+    });
+
     // Retrieve state passed via pushState
-    const state = window.history.state;
-    if (state && state.name) {
-      setData(state as BookingData);
+    const state = window.history.state as BookingData;
+    if (state) {
+      setData(state);
+      
+      // Setup Audio (but don't play yet)
+      const audioUrl = state.audioUrl || sessionStorage.getItem('customAudioUrl');
+      if (audioUrl && !audioRef.current) {
+          audioRef.current = new Audio(audioUrl);
+          audioRef.current.onended = () => setIsPlaying(false);
+          audioRef.current.onplay = () => setIsPlaying(true);
+          audioRef.current.onpause = () => setIsPlaying(false);
+      }
     }
   }, []);
+
+  const handleStartAudio = () => {
+      setHasInteracted(true);
+      if (audioRef.current) {
+          audioRef.current.play().catch(e => console.log("Play failed:", e));
+      }
+  };
+
+  const toggleAudio = () => {
+      if (audioRef.current) {
+          if (isPlaying) {
+              audioRef.current.pause();
+          } else {
+              audioRef.current.play();
+          }
+      }
+  };
+
+  const couponCode = data?.couponCode || '276KJO';
+  const fallbackName = lang === 'es' ? 'Estimado Cliente' : 'Dear Customer';
+  const displayName = data?.name || fallbackName;
+  const hasAudio = !!(data?.audioUrl || sessionStorage.getItem('customAudioUrl'));
 
   return (
     <div className="min-h-screen bg-[#06080f] text-gray-300 font-sans flex flex-col">
@@ -90,62 +160,56 @@ const ThankYouPage: React.FC = () => {
             </svg>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            You're All Set, <span className="text-cyan-400">{data?.name || 'Friend'}!</span>
+            You're All Set, <span className="text-cyan-400">{displayName}!</span>
           </h1>
           <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto">
             Your appointment is confirmed. We've saved your spot and sent a
             reminder to your phone.
           </p>
-          <div className="mb-10 w-full max-w-sm mx-auto">
-            <div className="bg-white/10 rounded-full p-2 flex items-center space-x-3">
-              <span className="text-white text-2xl">🔊</span>
-              <span className="text-white text-sm">Playing...</span>
-              <div className="flex-grow flex items-center justify-between space-x-0.5 h-6">
-                <div
-                  className="w-1.5 h-2/3 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.9s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-1/3 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.8s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-full bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.7s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-2/4 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.6s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-3/4 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.5s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-2/3 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.4s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-1/2 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.3s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-full bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.2s" }}
-                ></div>
-                <div
-                  className="w-1.5 h-3/5 bg-cyan-400/60 rounded-full animate-pulse"
-                  style={{ animationDelay: "-0.1s" }}
-                ></div>
-                <div className="w-1.5 h-4/5 bg-cyan-400/60 rounded-full animate-pulse"></div>
-                <div className="w-1.5 h-1/3 bg-gray-500/50 rounded-full"></div>
-                <div className="w-1.5 h-1/3 bg-gray-500/50 rounded-full"></div>
-                <div className="w-1.5 h-1/3 bg-gray-500/50 rounded-full"></div>
-                <div className="w-1.5 h-1/3 bg-gray-500/50 rounded-full"></div>
-                <div className="w-1.5 h-1/3 bg-gray-500/50 rounded-full"></div>
+          
+          {/* Audio Player UI - Only show if audio exists */}
+          {hasAudio && (
+            !hasInteracted ? (
+              <div className="mb-12">
+                  <button
+                      onClick={handleStartAudio}
+                      className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] hover:scale-105 active:scale-95 animate-pulse"
+                  >
+                      <svg 
+                        className="w-5 h-5 mr-3 fill-current" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                      Play a Message for {displayName}
+                  </button>
+               </div>
+            ) : (
+              <div className="mb-10 w-full max-w-sm mx-auto cursor-pointer" onClick={toggleAudio}>
+                  <div className={`bg-white/10 rounded-full p-2 flex items-center space-x-3 transition-all ${isPlaying ? 'ring-2 ring-cyan-400/50' : ''}`}>
+                  <span className="text-white text-2xl">{isPlaying ? '🔊' : '🔇'}</span>
+                  <span className="text-white text-sm">{isPlaying ? 'Playing...' : 'Click to Play Message'}</span>
+                  
+                  {isPlaying && (
+                      <div className="flex-grow flex items-center justify-between space-x-0.5 h-6">
+                          {[...Array(15)].map((_, i) => (
+                              <div
+                              key={i}
+                              className="w-1.5 bg-cyan-400/60 rounded-full animate-pulse"
+                              style={{ 
+                                  height: `${Math.random() * 100}%`,
+                                  animationDelay: `-${Math.random()}s` 
+                              }}
+                              ></div>
+                          ))}
+                      </div>
+                  )}
+                  </div>
               </div>
-            </div>
-          </div>
+            )
+          )}
+
           <div className="space-y-6">
             <div className="p-[2px] rounded-lg bg-gradient-to-r from-cyan-400 via-transparent to-cyan-400 bg-[length:15px_15px]">
               <div className="bg-[#111827] rounded-[10px] p-8 border border-cyan-500/30 border-dashed">
@@ -155,11 +219,11 @@ const ThankYouPage: React.FC = () => {
                 </p>
                 <div className="flex items-center justify-center space-x-4">
                   <span className="text-4xl md:text-5xl font-bold tracking-widest text-cyan-400">
-                    276KJO
+                    {couponCode}
                   </span>
                   <button
                     className="p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
-                    onClick={() => navigator.clipboard.writeText("276KJO")}
+                    onClick={() => navigator.clipboard.writeText(couponCode)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +246,7 @@ const ThankYouPage: React.FC = () => {
             <div className="bg-[#111827] rounded-lg p-6 text-left grid grid-cols-1 sm:grid-cols-3 gap-6 border border-gray-800">
               <div>
                 <p className="text-xs text-gray-400 mb-1">Name</p>
-                <p className="font-semibold text-white">{data?.name || 'Valued Customer'}</p>
+                <p className="font-semibold text-white">{displayName}</p>
               </div>
               <div>
                 <p className="text-xs text-gray-400 mb-1">Vehicle</p>
