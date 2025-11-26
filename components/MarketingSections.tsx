@@ -13,7 +13,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     >
       <div className="max-w-8xl mx-auto">
         <div className="text-center mb-12">
-          <span className="glass-card inline-block px-4 py-2 rounded-full text-cyan-300 text-sm font-medium mb-6 animate-on-scroll fade-up delay-0">
+          <span className="glass-card inline-block px-4 py-2 rounded-full text-primary text-sm font-medium mb-6 animate-on-scroll fade-up delay-0">
             {t("limitedSlots")}
           </span>
           <h1
@@ -41,14 +41,14 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                 />
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-xl opacity-50"></div>
+            <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-r from-primary to-blue-500 rounded-full blur-xl opacity-50"></div>
             <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full blur-xl opacity-30"></div>
           </div>
 
           <div>
             <ul className="space-y-3 mb-8 text-foreground/80">
               <li className="flex items-start gap-3 text-lg">
-                <span className="text-cyan-400 text-2xl flex-shrink-0">✅</span>
+                <span className="text-primary text-2xl flex-shrink-0">✅</span>
                 <span>{t("bulletBrakeService")}</span>
               </li>
               {[1, 2, 3, 4].map((num) => (
@@ -58,7 +58,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 mt-1 text-cyan-400 flex-shrink-0"
+                    className="h-6 w-6 mt-1 text-primary flex-shrink-0"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -119,7 +119,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
         <div className="mt-12 text-center text-xs text-foreground/80 animate-on-scroll fade-up delay-4">
           <span>{t("restrictionsApply")} </span>
           <button
-            className="bg-transparent p-0 border-0 text-foreground font-bold underline hover:text-cyan-400 hover:cursor-pointer transition-colors"
+            className="bg-transparent p-0 border-0 text-foreground font-bold underline hover:text-primary hover:cursor-pointer transition-colors"
             onClick={() =>
               document.dispatchEvent(new CustomEvent("openDetails"))
             }
@@ -209,7 +209,7 @@ export const PromiseSection: React.FC<SectionProps> = ({ t }) => {
             key={num}
             className={`glass-card p-8 rounded-2xl flex flex-col items-center text-center group hover:bg-secondary/20 transition-all duration-300 animate-on-scroll fade-up delay-${idx}`}
           >
-            <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-blue-500/20 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-primary mb-6 group-hover:bg-blue-500/20 transition-colors">
               {icons[idx]}
             </div>
             <h4 className="font-bold text-foreground text-xl mb-3">
@@ -385,7 +385,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-cyan-400 flex-shrink-0 ml-4"
+              className="h-6 w-6 text-primary flex-shrink-0 ml-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -417,7 +417,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
         <div className="space-y-6">
           <div className="flex items-start">
             <svg
-              className="w-10 h-10 mr-4 flex-shrink-0 text-cyan-400"
+              className="w-10 h-10 mr-4 flex-shrink-0 text-primary"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -458,7 +458,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
             </div>
           ))}
         </div>
-        <div className="mt-12 p-4 bg-cyan-500/20 rounded-lg border border-cyan-500 text-foreground font-semibold italic text-center">
+        <div className="mt-12 p-4 bg-primary/20 rounded-lg border border-primary text-foreground font-semibold italic text-center">
           <span>{t("reliefStatement")}</span>
         </div>
       </div>
@@ -514,7 +514,7 @@ export const TrustSignalsSection: React.FC<SectionProps> = ({ t }) => (
         className={`glass-card p-6 rounded-xl shadow-lg animate-on-scroll fade-up delay-${idx}`}
       >
         <div
-          className={`flex items-center justify-center h-12 w-12 rounded-full bg-${item.color}-500/10 text-${item.color}-400 mx-auto`}
+          className={`flex items-center justify-center h-12 w-12 rounded-full trust-signal-icon-container-${item.color} mx-auto`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -545,7 +545,7 @@ export const AboutSection: React.FC<SectionProps> = ({ t }) => (
         {[1, 2, 3, 4].map((n) => (
           <li key={n} className="flex items-center">
             <svg
-              className="w-6 h-6 text-cyan-400 mr-3"
+              className="w-6 h-6 text-primary mr-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -603,7 +603,7 @@ export const ServiceAreaSection: React.FC<SectionProps> = ({ t }) => (
         <h2 className="text-3xl font-bold text-foreground">
           {t("serviceAreaTitle")}
         </h2>
-        <div className="w-24 h-1 bg-cyan-400 mt-4 mb-6"></div>
+        <div className="w-24 h-1 bg-primary mt-4 mb-6"></div>
         <ul className="grid grid-cols-2 gap-x-8 gap-y-4 text-foreground/80 animate-on-scroll fade-up delay-1">
           {[
             "Elgin, IL",
@@ -618,7 +618,7 @@ export const ServiceAreaSection: React.FC<SectionProps> = ({ t }) => (
             "Huntley, IL",
           ].map((city) => (
             <li key={city} className="flex items-center">
-              <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2"></span>
+              <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
               {city}
             </li>
           ))}
