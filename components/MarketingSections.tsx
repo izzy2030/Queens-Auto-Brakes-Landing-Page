@@ -129,9 +129,6 @@ export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
                 <div className="p-6 rounded-lg text-left">
                     <h3 className="text-xl font-bold text-white">{t('dontWaitTitle')}</h3>
                     <p className="mt-2 text-slate-300">{t('dontWaitBody')}</p>
-                    <a href="#book" className="mt-5 inline-flex items-center justify-center px-12 py-5 btn-gradient text-white text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
-                        {t('dontWaitCTA')}
-                    </a>
                 </div>
             </div>
             <div>
@@ -242,11 +239,6 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
                 <div className="mt-12 p-4 bg-cyan-500/20 rounded-lg border border-cyan-500 text-white font-semibold italic text-center">
                     <span>{t('reliefStatement')}</span>
                 </div>
-                <div className="mt-8 text-center">
-                    <a href="#book" className="inline-flex items-center justify-center px-8 py-4 btn-gradient text-white text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
-                        {t('bookServiceCTA2')}
-                    </a>
-                </div>
             </div>
             <div>
                 <img src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Nation-Wide-Protection-Expert-Brake-Disc-Repair-Replacement.webp" alt="Worn brakes" className="w-full rounded-2xl shadow-lg mt-8 md:mt-0" />
@@ -306,9 +298,6 @@ export const ParallaxSection: React.FC<SectionProps> = ({ t }) => (
         <div className="relative z-10 text-center max-w-3xl mx-auto">
             <h2 className="text-4xl font-extrabold text-white">{t('parallaxTitle')}</h2>
             <p className="mt-4 text-lg text-slate-200">{t('parallaxBody')}</p>
-            <a href="#book" className="mt-8 inline-flex items-center justify-center px-8 py-4 btn-gradient text-white text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
-                {t('parallaxCTA')}
-            </a>
         </div>
     </section>
 );

@@ -7,6 +7,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import Modals from './components/Modals';
+import StickyBanner from './components/StickyBanner';
 import {
   HeroSection,
   PromiseSection,
@@ -87,6 +88,8 @@ const App: React.FC = () => {
       </div>
 
       <Modals t={t} />
+
+      <StickyBanner t={t} />
     </div>
   );
 };
