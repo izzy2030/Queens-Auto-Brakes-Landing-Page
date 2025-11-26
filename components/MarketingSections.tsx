@@ -64,8 +64,8 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => (
           </div>
         </div>
         <div className="mt-12 text-center text-xs text-slate-400">
-            <span>{t('restrictionsApply')}</span>
-            <button className="ml-1 underline hover:text-cyan-400 transition-colors" onClick={() => document.dispatchEvent(new CustomEvent('openDetails'))}>{t('seeDetails')}</button>
+            <span>{t('restrictionsApply')} </span>
+            <button className="underline hover:text-cyan-400 transition-colors text-white font-bold" onClick={() => document.dispatchEvent(new CustomEvent('openDetails'))}>{t('seeDetails')}</button>
         </div>
       </div>
     </div>
