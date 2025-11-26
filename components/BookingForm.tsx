@@ -148,24 +148,33 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
       }
 
       // Redirect Logic
-      const thankYouUrl = new URL('https://queensautoservices.com/brakes/thank-you-001.htm');
-      Object.entries(payload).forEach(([key, value]) => {
-          if (value) thankYouUrl.searchParams.append(key, value);
-      });
-      window.location.href = thankYouUrl.toString();
+      const state = {
+        name: formData.firstName,
+        vehicle: `${formData.carYear} ${formData.carMake} ${formData.carModel}`,
+        date: formData.date,
+        time: formData.time
+      };
+      window.history.pushState(state, '', '/thank-you');
+      window.dispatchEvent(new PopStateEvent('popstate'));
 
     } catch (error) {
       console.error('Submission error', error);
       // Fallback redirect
-      const thankYouUrl = new URL('https://queensautoservices.com/brakes/thank-you-001.htm');
-      window.location.href = thankYouUrl.toString();
+      const state = {
+        name: formData.firstName,
+        vehicle: `${formData.carYear} ${formData.carMake} ${formData.carModel}`,
+        date: formData.date,
+        time: formData.time
+      };
+      window.history.pushState(state, '', '/thank-you');
+      window.dispatchEvent(new PopStateEvent('popstate'));
     } finally {
         setIsSubmitting(false);
     }
   };
 
   // Generate Year Options
-  const years = [];
+  const years: number[] = [];
   const nextYear = new Date().getFullYear() + 1;
   for(let i = nextYear; i >= 1980; i--) years.push(i);
 

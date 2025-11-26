@@ -8,6 +8,7 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import Modals from './components/Modals';
 import StickyBanner from './components/StickyBanner';
+import ThankYouPage from './components/ThankYouPage';
 import {
   HeroSection,
   PromiseSection,
@@ -22,6 +23,7 @@ import {
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<LangType>('en');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   // Detect browser language on mount
   useEffect(() => {
@@ -32,6 +34,10 @@ const App: React.FC = () => {
       const userLang = navigator.language.split('-')[0];
       setLang(userLang === 'es' ? 'es' : 'en');
     }
+
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const handleLangChange = (newLang: LangType) => {
@@ -44,6 +50,10 @@ const App: React.FC = () => {
   const t = (key: keyof typeof translations.en) => {
     return translations[lang][key] || translations.en[key];
   };
+
+  if (currentPath === '/thank-you') {
+    return <ThankYouPage />;
+  }
 
   return (
     <div className="relative z-10 text-slate-300">
