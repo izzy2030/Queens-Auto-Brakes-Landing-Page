@@ -44,13 +44,11 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => (
                  ))}
             </ul>
             
-            <div className="flex flex-col items-start">
-                <div className="flex flex-col items-center sm:items-start">
-                    <a href="#book" className="self-center md:self-start inline-flex items-center justify-center px-8 py-4 btn-gradient text-white text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
-                        {t('heroCTA')}
-                    </a>
-                    <p className="mt-2 text-sm text-orange-400 italic font-semibold">{t('scarcityLine')}</p>
-                </div>
+            <div className="flex flex-col items-center md:items-start">
+                <a href="#book" className="inline-flex items-center justify-center px-8 py-4 btn-gradient text-white text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
+                    {t('heroCTA')}
+                </a>
+                <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center md:text-left">{t('scarcityLine')}</p>
             </div>
              
             <div className="mt-8 flex items-center space-x-6">
