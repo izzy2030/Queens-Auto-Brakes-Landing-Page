@@ -115,7 +115,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
         <div className="max-w-3xl w-full">
           <div className="mb-6">
             <svg
-              className="mx-auto h-20 w-20 text-primary"
+              className="mx-auto h-20 w-20 text-cyan-400"
               fill="none"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
             </svg>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
-            You're All Set, <span className="text-primary">{displayName}!</span>
+            You're All Set, <span className="text-cyan-400">{displayName}!</span>
           </h1>
           <p className="text-lg text-foreground/80 mb-8 max-w-lg mx-auto">
             Your appointment is confirmed. We've saved your spot and sent a
@@ -218,7 +218,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
                   your discount:
                 </p>
                 <div className="flex items-center justify-center space-x-4">
-                  <span className="text-4xl md:text-5xl font-bold tracking-widest text-primary">
+                  <span className="text-4xl md:text-5xl font-bold tracking-widest text-cyan-400">
                     {couponCode}
                   </span>
                   <button
@@ -314,11 +314,11 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
         <div className="container mx-auto">
           <p>
             © 2025 Queens Auto Service. All Rights Reserved. |{" "}
-            <a className="hover:text-primary" href="#">
+            <a className="hover:text-cyan-400" href="#">
               Privacy Policy
             </a>{" "}
             |{" "}
-            <a className="hover:text-primary" href="#">
+            <a className="hover:text-cyan-400" href="#">
               Terms of Use
             </a>
           </p>
