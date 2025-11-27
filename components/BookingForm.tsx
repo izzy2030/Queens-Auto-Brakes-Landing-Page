@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { translations } from '../constants';
+import { translations, WEBHOOK_URL } from '../constants';
 import { LangType } from '../types';
 
 interface BookingFormProps {
@@ -111,122 +111,71 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
     const params = new URLSearchParams(window.location.search);
     const getParam = (k: string) => params.get(k) || '';
 
-    // Generate Event ID
-    const eventId = `gen_${Date.now()}`;
-    
-    // GTM Data Layer Push
-    const gtmData = {
-      event: 'generate_lead',
-      event_id: eventId,
-      user_data: {
-        email: formData.email,
-        phone_number: formattedPhone,
-        address: {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-        }
-      },
-      lead_type: 'generate_lead',
-      page_variant: 'brakes_001_react',
-      user_language: lang
-    };
-    
-    // Push to dataLayer if it exists
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push(gtmData);
-    }
-
-    // N8N Payload
     const payload = {
-      "First Name": formData.firstName,
-      "Last Name": formData.lastName,
-      "Full Name": `${formData.firstName} ${formData.lastName}`,
-      "Phone": formattedPhone,
-      "Email": formData.email,
-      "Car Make": formData.carMake,
-      "Car Model": formData.carModel,
-      "Car Year": formData.carYear,
-      "Vehicle": `${formData.carYear} ${formData.carMake} ${formData.carModel}`,
-      "Appointment Date": formData.date,
-      "Appointment Time": formData.time,
-      "UTM Source": getParam('utm_source') || null,
-      "UTM Medium": getParam('utm_medium') || null,
-      "UTM Campaign": getParam('utm_campaign') || null,
-      "UTM Term": getParam('utm_term') || null,
-      "UTM Content": getParam('utm_content') || null,
-      "GCLID": getParam('gclid') || null,
-      "FBCLID": getParam('fbclid') || null,
-      "MSCLKID": getParam('msclkid') || "",
-      "GA Client ID": (window as any).ga?.getAll?.[0]?.get('clientId') || "", // Try to get GA Client ID
-      "FBC": getParam('fbc') || null,
-      "Referrer": document.referrer || null,
-      "Page Variant": "brakes_001_react",
-      "User Language": lang,
-      "Event ID": eventId,
-      "Lead Type": "generate_lead"
+      name: formData.firstName,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formattedPhone,
+      symptom: formData.symptom,
+      carMake: formData.carMake,
+      carModel: formData.carModel,
+      carYear: formData.carYear,
+      date: formData.date,
+      time: formData.time,
+      userLanguage: lang,
+      utm_source: getParam('utm_source') || 'direct',
+      utm_medium: getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      utm_term: getParam('utm_term'),
+      utm_content: getParam('utm_content'),
+      gclid: getParam('gclid'),
+      fbclid: getParam('fbclid'),
+      msclkid: getParam('msclkid'),
+      pageVariant: "brakes_001_react"
     };
-
-    // Use the TEST webhook URL for now
-    const TEST_WEBHOOK_URL = "https://n8n.queensautoservices.com/webhook-test/122050bb-db0e-48e3-857f-e794f563e0db";
 
     try {
-      const response = await fetch(TEST_WEBHOOK_URL, {
+      const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       const responseData = await response.json().catch(() => ({}));
-      
-      // Redirect Logic
-      const state = {
-        name: formData.firstName,
-        vehicle: `${formData.carYear} ${formData.carMake} ${formData.carModel}`,
-        date: formData.date,
-        time: formData.time,
-        couponCode: responseData.couponCode || '276KJO', // Use response code or fallback
-        audioUrl: responseData.audioUrl || null
-      };
-      
-      // Save audio URL to session storage as backup
       if (responseData.audioUrl) {
           sessionStorage.setItem('customAudioUrl', responseData.audioUrl);
       }
 
-      window.history.pushState(state, '', '/thank-you');
-      window.dispatchEvent(new PopStateEvent('popstate'));
+      // Redirect Logic
+      const thankYouUrl = new URL('https://queensautoservices.com/brakes/thank-you-001.htm');
+      Object.entries(payload).forEach(([key, value]) => {
+          if (value) thankYouUrl.searchParams.append(key, value);
+      });
+      window.location.href = thankYouUrl.toString();
 
     } catch (error) {
       console.error('Submission error', error);
       // Fallback redirect
-      const state = {
-        name: formData.firstName,
-        vehicle: `${formData.carYear} ${formData.carMake} ${formData.carModel}`,
-        date: formData.date,
-        time: formData.time,
-        couponCode: '276KJO', // Fallback code
-        audioUrl: null
-      };
-      window.history.pushState(state, '', '/thank-you');
-      window.dispatchEvent(new PopStateEvent('popstate'));
+      const thankYouUrl = new URL('https://queensautoservices.com/brakes/thank-you-001.htm');
+      window.location.href = thankYouUrl.toString();
     } finally {
         setIsSubmitting(false);
     }
   };
 
   // Generate Year Options
-  const years: number[] = [];
+  const years = [];
   const nextYear = new Date().getFullYear() + 1;
   for(let i = nextYear; i >= 1980; i--) years.push(i);
 
   return (
     <section id="book" className="relative z-10 px-4 sm:px-6 lg:px-8 py-20">
-      <div className="max-w-2xl mx-auto animated-gradient-border shadow-2xl shadow-cyan-500/20">
-        <div className="bg-card/95 backdrop-blur-xl rounded-xl p-6 sm:p-8">
+      <div className="max-w-2xl mx-auto animated-gradient-border p-[3px] rounded-2xl shadow-2xl shadow-blue-500/20">
+        <div className="bg-slate-900/90 backdrop-blur-xl rounded-xl p-6 sm:p-8">
             <div className="text-center">
-            <h2 className="text-3xl font-bold text-foreground">{t('formTitle')}</h2>
-            <p className="mt-2 text-lg text-foreground/80">
+            <h2 className="text-3xl font-bold text-white">{t('formTitle')}</h2>
+            <p className="mt-2 text-lg text-slate-300">
                 {step === 1 && t('formStep1')}
                 {step === 2 && t('formStep2')}
             </p>
@@ -240,41 +189,41 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                 <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('firstName')}</label>
-                        <input type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('firstName')}</label>
+                        <input type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('lastName')}</label>
-                        <input type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('lastName')}</label>
+                        <input type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                     </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('email')}</label>
-                        <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('email')}</label>
+                        <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('mobileNumber')}</label>
-                        <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('mobileNumber')}</label>
+                        <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                     </div>
                     </div>
                     <div className="space-y-4 pt-2">
-                        <h3 className="text-xl font-bold text-foreground">{t('vehicleDetails')}</h3>
+                        <h3 className="text-xl font-bold text-white">{t('vehicleDetails')}</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carYear')}</label>
-                                <select name="carYear" required value={formData.carYear} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm">
+                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carYear')}</label>
+                                <select name="carYear" required value={formData.carYear} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm">
                                     <option value="">Select</option>
                                     {years.map(y => <option key={y} value={y}>{y}</option>)}
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carMake')}</label>
-                                <input type="text" name="carMake" required value={formData.carMake} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carMake')}</label>
+                                <input type="text" name="carMake" required value={formData.carMake} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carModel')}</label>
-                                <input type="text" name="carModel" required value={formData.carModel} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
+                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carModel')}</label>
+                                <input type="text" name="carModel" required value={formData.carModel} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm" />
                             </div>
                         </div>
                     </div>
@@ -298,18 +247,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                 <div className="animate-fade-in-up">
                     <div className="w-full">
                         <div className="flex items-center justify-between mb-6 px-4">
-                            <button type="button" onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-secondary transition-colors">
-                                <svg className="w-6 h-6 text-foreground/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <button type="button" onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-slate-700 transition-colors">
+                                <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                             </button>
-                            <h3 className="text-xl font-semibold text-foreground">
+                            <h3 className="text-xl font-semibold text-white">
                                 {currentDate.toLocaleDateString(lang, { month: 'long', year: 'numeric' })}
                             </h3>
-                            <button type="button" onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-secondary transition-colors">
-                                <svg className="w-6 h-6 text-foreground/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                            <button type="button" onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-slate-700 transition-colors">
+                                <svg className="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path></svg>
                             </button>
                         </div>
                         <div className="grid grid-cols-7 gap-1 text-center mb-2">
-                            {daysOfWeek.map(d => <div key={d} className="font-semibold text-foreground/60 text-sm py-2">{d}</div>)}
+                            {daysOfWeek.map(d => <div key={d} className="font-semibold text-slate-400 text-sm py-2">{d}</div>)}
                         </div>
                         <div className="grid grid-cols-7 gap-1 text-center">
                             {Array.from({ length: getFirstDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()) }).map((_, i) => (
@@ -332,7 +281,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                                         onClick={() => !isPast && handleDateClick(currentDate.getFullYear(), currentDate.getMonth(), d)}
                                         className={`
                                             w-10 h-10 flex items-center justify-center rounded-full cursor-pointer text-sm transition-colors mx-auto
-                                            ${isPast ? 'text-foreground/40 cursor-not-allowed' : 'hover:bg-secondary'}
+                                            ${isPast ? 'text-slate-600 cursor-not-allowed' : 'hover:bg-slate-700'}
                                             ${isSelected ? 'bg-sky-500 text-white font-bold hover:bg-sky-600' : ''}
                                         `}
                                     >
@@ -344,8 +293,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                     </div>
 
                     {selectedDate && (
-                        <div className="mt-8 border-t border-border pt-6">
-                            <h4 className="text-xl font-semibold text-foreground mb-4">{t('availableTimes')}</h4>
+                        <div className="mt-8 border-t border-slate-700 pt-6">
+                            <h4 className="text-xl font-semibold text-white mb-4">{t('availableTimes')}</h4>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                 {availableTimes.length > 0 ? availableTimes.map(time => (
                                     <button
@@ -356,21 +305,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                                             p-2 border rounded-md transition-colors duration-200 text-sm
                                             ${formData.time === time 
                                                 ? 'bg-sky-500 text-white border-sky-500' 
-                                                : 'border-border text-foreground hover:bg-secondary'}
+                                                : 'border-slate-600 text-slate-200 hover:bg-slate-700'}
                                         `}
                                     >
                                         {time}
                                     </button>
                                 )) : (
-                                    <p className="text-foreground/80 col-span-full text-center">{t('slotsDone' as any)}</p>
+                                    <p className="text-slate-400 col-span-full text-center">{t('slotsDone' as any)}</p>
                                 )}
                             </div>
                         </div>
                     )}
 
-                    <div className="mt-8 flex flex-col items-center gap-4 border-t border-border pt-6">
+                    <div className="mt-8 flex flex-col items-center gap-4 border-t border-slate-700 pt-6">
                         <div className="w-full flex flex-col sm:flex-row sm:justify-between gap-4">
-                            <button type="button" onClick={prevStep} className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-semibold rounded-full shadow-lg hover:bg-secondary/80">{t('backBtn')}</button>
+                            <button type="button" onClick={prevStep} className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600">{t('backBtn')}</button>
                             <button 
                                 type="submit" 
                                 disabled={!formData.time || isSubmitting}

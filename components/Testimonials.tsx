@@ -13,8 +13,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground" dangerouslySetInnerHTML={{ __html: t('testimonialsTitle') }}></h2>
-            <p className="mt-4 max-w-2xl mx-auto text-lg text-foreground/80">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white" dangerouslySetInnerHTML={{ __html: t('testimonialsTitle') }}></h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
               {t('testimonialsSubtitle')}
             </p>
         </div>
@@ -27,7 +27,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
             <div className="mt-12 text-center">
                 <button
                     onClick={() => setLimit(allReviews.length)}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-secondary text-secondary-foreground font-semibold rounded-full shadow-lg hover:bg-secondary/80 focus:outline-none focus:ring-4 focus:ring-ring focus:ring-opacity-50 transition-all duration-300"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-500 focus:ring-opacity-50 transition-all duration-300"
                 >
                     {t('loadMore')}
                 </button>
@@ -51,7 +51,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
                 </svg>
             </div>
             <div className="relative z-10 flex flex-col flex-grow">
-                <p className="text-lg text-foreground/90 leading-relaxed flex-grow">{displayText}</p>
+                <p className="text-lg text-slate-300 leading-relaxed flex-grow">{displayText}</p>
                 {isLong && (
                     <div className="text-right mt-4">
                         <button onClick={() => setExpanded(!expanded)} className="text-cyan-400 font-semibold hover:underline">
@@ -60,10 +60,10 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
                     </div>
                 )}
             </div>
-            <div className="relative z-10 flex items-center mt-6 pt-6 border-t border-border">
-                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground text-lg font-bold mr-4">{initials}</div>
+            <div className="relative z-10 flex items-center mt-6 pt-6 border-t border-slate-800">
+                <div className="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-white text-lg font-bold mr-4">{initials}</div>
                 <div>
-                    <h4 className="font-semibold text-foreground">{review.name}</h4>
+                    <h4 className="font-semibold text-white">{review.name}</h4>
                     <div className="text-amber-400">★★★★★</div>
                 </div>
             </div>
