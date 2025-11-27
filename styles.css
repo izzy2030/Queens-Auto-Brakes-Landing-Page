@@ -265,3 +265,52 @@ select::-webkit-scrollbar-thumb:hover {
     transform: none;
   }
 }
+/* Border Beam Animation */
+.border-beam-btn-v2 {
+  position: relative;
+  background: #0f172a; /* Dark base layer */
+}
+
+.border-beam-btn-v2::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 0deg, transparent 270deg, #38bdf8 360deg);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  animation: beam-spin 3s linear infinite; /* Always animating */
+}
+
+.border-beam-btn-v2::after {
+  content: "";
+  position: absolute;
+  inset: 2px; /* Border width */
+  background: #0f172a; /* Inner mask matching button bg */
+  border-radius: 9999px;
+  z-index: 0;
+}
+
+@keyframes beam-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Fire Animation */
+@keyframes fire-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(249, 115, 22, 0));
+  }
+  50% {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.8));
+  }
+}
+
+.animate-fire {
+  animation: fire-pulse 2s infinite ease-in-out;
+  display: inline-block;
+}

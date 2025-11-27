@@ -10,7 +10,7 @@ const FAQ: React.FC<FAQProps> = ({ t }) => {
   const items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <section id="faq" className="mt-16 p-6 md:p-12 glass-card rounded-2xl shadow-2xl max-w-8xl mx-auto">
+    <section id="faq" className="mt-16 p-6 md:p-12 rounded-2xl max-w-8xl mx-auto">
         <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">{t('faqTitle')}</h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-300">{t('faqSubtitle')}</p>
@@ -20,7 +20,7 @@ const FAQ: React.FC<FAQProps> = ({ t }) => {
                 <div key={num} className="border-b border-slate-700 pb-4">
                     <button 
                         onClick={() => setOpenIndex(openIndex === num ? null : num)}
-                        className="w-full flex justify-between items-center text-left text-xl font-semibold text-white"
+                        className="w-full flex justify-between items-center text-left text-lg md:text-xl font-semibold text-white"
                     >
                         <span>{t(`faq${num}q` as any)}</span>
                         <svg className={`w-6 h-6 transform transition-transform ${openIndex === num ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>

@@ -54,9 +54,9 @@ const StickyBanner: React.FC<StickyBannerProps> = ({ t }) => {
             </div>
             <a
               href="#book"
-              className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-slate-800 transition-all duration-300 shadow-lg flex-shrink-0"
+              className="relative text-white px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 shadow-lg flex-shrink-0 border-beam-btn-v2 overflow-hidden"
             >
-              Claim Offer
+              <span className="relative z-10">Claim Offer</span>
             </a>
           </div>
         </div>
