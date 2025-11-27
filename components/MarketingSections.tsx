@@ -99,9 +99,6 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
 
   <span className="relative z-10 flex items-center justify-center gap-3">
     {t("heroCTA")}
-    <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"/>
-    </svg>
   </span>
 </button>
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center">
