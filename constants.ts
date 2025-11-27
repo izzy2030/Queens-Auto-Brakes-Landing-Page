@@ -6,7 +6,7 @@ export const translations: Translations = {
     en: {
         bookNow: "Book Now",
         limitedSlots: "Professional Brake Service",
-        heroTitle: "<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500\">Stop Safer Today:</span> $369 Complete Brake <span class=\"text-highlight\">Service</span> + $175 in Safety Bonuses",
+        heroTitle: "<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500\">Stop Safer Today:</span> $369 Complete Brake <span class=\"text-highlight\">Service</span>",
         heroSubtitle: "Your brakes are your family's last line of defense. Get professional service with premium parts, expert installation, and a 24-month warranty—all for $369. Plus $175 in free safety bonuses to keep you protected on the road.",
         bulletBrakeService: "$369 Premium Brake Service (Pads & Rotors)",
         bulletBonus1: "<strong>Bonus 1:</strong> FREE Tire Rotation ($29 Value)",

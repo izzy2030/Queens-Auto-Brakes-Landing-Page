@@ -18,7 +18,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
             {t("limitedSlots")}
           </span>
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-on-scroll fade-up delay-1"
+            className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-6 animate-on-scroll fade-up delay-1"
             dangerouslySetInnerHTML={{ __html: t("heroTitle") }}
           ></h1>
           <p className="text-lg text-white/70 mx-auto max-w-2xl animate-on-scroll fade-up delay-2">
