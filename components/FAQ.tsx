@@ -20,7 +20,7 @@ const FAQ: React.FC<FAQProps> = ({ t }) => {
                 <div key={num} className="border-b border-slate-700 pb-4">
                     <button 
                         onClick={() => setOpenIndex(openIndex === num ? null : num)}
-                        className="w-full flex justify-between items-center text-left text-lg md:text-xl font-semibold text-white"
+                        className="w-full flex justify-between items-center text-left text-lg md:text-xl font-semibold text-white cursor-pointer hover:text-cyan-400 transition-colors"
                     >
                         <span>{t(`faq${num}q` as any)}</span>
                         <svg className={`w-6 h-6 transform transition-transform ${openIndex === num ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>

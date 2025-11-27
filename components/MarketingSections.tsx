@@ -34,7 +34,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                 <img
                   src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Queens-Auto-Brake-Repair-Before-and-After-0001.webp"
                   alt="New Brakes"
-                  className="w-full h-auto"
+                  className="w-full h-auto transition-transform duration-700 hover:scale-110"
                   onError={(e) =>
                     ((e.target as HTMLImageElement).src =
                       "https://placehold.co/600x400/1e293b/ffffff?text=Brake+Service")
@@ -329,11 +329,11 @@ export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
           <p className="mt-2 text-slate-300">{t("dontWaitBody")}</p>
         </div>
       </div>
-      <div>
+      <div className="rounded-2xl overflow-hidden">
         <img
           src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/New-vs.-Worn-Brake-Pads-Free-Brake-Inspection-Offer.webp"
           alt="Comparison"
-          className="w-full rounded-2xl"
+          className="w-full transition-transform duration-700 hover:scale-110"
         />
       </div>
     </div>
@@ -440,11 +440,11 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
   return (
     <section className="mt-16 p-6 md:p-12 rounded-2xl max-w-8xl mx-auto animate-on-scroll fade-up delay-1">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-12">
-        <div>
+        <div className="rounded-2xl overflow-hidden shadow-lg">
           <img
             src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Expert-Brake-Repair-with-Financing-Available-Auto-Service-Guide.webp"
             alt="Brake repair"
-            className="w-full rounded-2xl shadow-lg"
+            className="w-full transition-transform duration-700 hover:scale-110"
           />
         </div>
         <div>
@@ -564,11 +564,11 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
           <span>{t("reliefStatement")}</span>
         </div>
       </div>
-      <div>
+      <div className="rounded-2xl overflow-hidden shadow-lg mt-8 md:mt-0">
         <img
           src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Nation-Wide-Protection-Expert-Brake-Disc-Repair-Replacement.webp"
           alt="Worn brakes"
-          className="w-full rounded-2xl shadow-lg mt-8 md:mt-0"
+          className="w-full transition-transform duration-700 hover:scale-110"
         />
       </div>
     </div>
@@ -718,15 +718,17 @@ export const AboutSection: React.FC<SectionProps> = ({ t }) => (
       </ul>
     </div>
     <div>
-      <img
-        src="https://queensautoserviceselgin.com/wp-content/uploads/2025/05/Queens-Elgin-Street-View-001.png"
-        alt="Queens Auto Shop"
-        className="rounded-2xl shadow-lg w-full"
-        onError={(e) =>
-          ((e.target as HTMLImageElement).src =
-            "https://placehold.co/600x400/1e293b/ffffff?text=Our+Shop")
-        }
-      />
+      <div className="rounded-2xl overflow-hidden shadow-lg w-full">
+        <img
+          src="https://queensautoserviceselgin.com/wp-content/uploads/2025/05/Queens-Elgin-Street-View-001.png"
+          alt="Queens Auto Shop"
+          className="w-full transition-transform duration-700 hover:scale-110"
+          onError={(e) =>
+            ((e.target as HTMLImageElement).src =
+              "https://placehold.co/600x400/1e293b/ffffff?text=Our+Shop")
+          }
+        />
+      </div>
       <p className="mt-4 text-center text-slate-400">{t("aboutSubtext")}</p>
     </div>
   </section>
