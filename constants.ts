@@ -5,8 +5,8 @@ export const WEBHOOK_URL = 'https://n8n.queensautoservices.com/webhook-test/550c
 export const translations: Translations = {
     en: {
         bookNow: "Book Now",
-        limitedSlots: "🔥 Professional Brake Service",
-        heroTitle: "Stop Safer Today: $369 Complete Brake <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500\">Service</span> + $175 in Safety Bonuses",
+        limitedSlots: "Professional Brake Service",
+        heroTitle: "<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500\">Stop Safer Today:</span> $369 Complete Brake <span class=\"text-highlight\">Service</span> + $175 in Safety Bonuses",
         heroSubtitle: "Your brakes are your family's last line of defense. Get professional service with premium parts, expert installation, and a 24-month warranty—all for $369. Plus $175 in free safety bonuses to keep you protected on the road.",
         bulletBrakeService: "$369 Premium Brake Service (Pads & Rotors)",
         bulletBonus1: "<strong>Bonus 1:</strong> FREE Tire Rotation ($29 Value)",
@@ -43,6 +43,7 @@ export const translations: Translations = {
         availableTimes: "Available Times",
         submitBtn: "Secure My Spot →",
         noPaymentRequired: "No payment required — this just saves your spot.",
+        requiredField: "This field is required",
         whenToReplaceTitle: "When to Replace Your Brake Pads",
         whenToReplaceSubtitle: "Know the warning signs of worn brake pads to avoid costly repairs and stay safe on the road.",
         watchSignsTitle: "Watch for These Signs",
@@ -147,7 +148,7 @@ export const translations: Translations = {
     },
     es: {
         bookNow: "Reservar ahora",
-        limitedSlots: "🔥 Servicio de Frenos Profesional",
+        limitedSlots: "Servicio de Frenos Profesional",
         heroTitle: "Especial de Frenos de <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500\">$369</span> + $175 en Bonos GRATIS",
         heroSubtitle: "Obtenga nuestro paquete completo de servicio de frenos con un valor total de más de $540. Incluye repuestos, mano de obra, una garantía de 24 meses/24,000 millas y bonos gratuitos para mantenerlo seguro.",
         bulletBrakeService: "Servicio de Frenos Premium de $369 (Pastillas y Rotores)",
@@ -185,6 +186,7 @@ export const translations: Translations = {
         availableTimes: "Horas disponibles",
         submitBtn: "Reservar servicio de frenos de $369",
         noPaymentRequired: "No se requiere pago — esto solo reserva tu lugar.",
+        requiredField: "Este campo es obligatorio",
         whenToReplaceTitle: "Cuándo reemplazar las pastillas de freno",
         whenToReplaceSubtitle: "Conozca las señales de advertencia de las pastillas de freno gastadas para evitar reparaciones costosas y mantenerse seguro en la carretera.",
         watchSignsTitle: "Esté atento a estas señales",
