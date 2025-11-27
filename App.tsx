@@ -74,7 +74,7 @@ const App: React.FC = () => {
 
         <BookingForm t={t} lang={lang} />
 
-        <Testimonials t={t} />
+        <Testimonials t={t} lang={lang} />
 
         <WhenToReplaceSection t={t} />
 

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { allReviews, translations } from '../constants';
-import { Review } from '../types';
+import { allReviews, allReviewsEs, translations } from '../constants';
+import { Review, LangType } from '../types';
 
 interface TestimonialsProps {
   t: (key: keyof typeof translations.en) => string;
+  lang: LangType;
 }
 
-const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
+const Testimonials: React.FC<TestimonialsProps> = ({ t, lang }) => {
   const [limit, setLimit] = useState(6);
-  const reviews = allReviews.slice(0, limit);
+  const reviewsSource = lang === 'es' ? allReviewsEs : allReviews;
+  const reviews = reviewsSource.slice(0, limit);
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
@@ -20,13 +22,13 @@ const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
         </div>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review, idx) => (
-                <ReviewCard key={idx} review={review} />
+                <ReviewCard key={idx} review={review} t={t} />
             ))}
         </div>
-        {limit < allReviews.length && (
+        {limit < reviewsSource.length && (
             <div className="mt-12 text-center">
                 <button
-                    onClick={() => setLimit(allReviews.length)}
+                    onClick={() => setLimit(reviewsSource.length)}
                     className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-500 focus:ring-opacity-50 transition-all duration-300"
                 >
                     {t('loadMore')}
@@ -37,7 +39,12 @@ const Testimonials: React.FC<TestimonialsProps> = ({ t }) => {
   );
 };
 
-const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
+interface ReviewCardProps {
+    review: Review;
+    t: (key: keyof typeof translations.en) => string;
+}
+
+const ReviewCard: React.FC<ReviewCardProps> = ({ review, t }) => {
     const [expanded, setExpanded] = useState(false);
     const initials = review.name.split(" ").map((n) => n[0]).join("");
     const isLong = review.text.length > 150;
@@ -55,7 +62,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
                 {isLong && (
                     <div className="text-right mt-4">
                         <button onClick={() => setExpanded(!expanded)} className="text-cyan-400 font-semibold hover:underline">
-                            {expanded ? "Read less" : "Read more"}
+                            {expanded ? t('readLess') : t('readMore')}
                         </button>
                     </div>
                 )}
