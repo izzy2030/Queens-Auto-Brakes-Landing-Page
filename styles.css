@@ -42,10 +42,14 @@
 }
 
 body {
-  background-color: hsl(var(--background));
+  background-color: #06080f;
   min-height: 100vh;
-  color: hsl(var(--foreground));
+  color: #cbd5e1;
   font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", sans-serif;
 }
 
 /* Background Styles */
