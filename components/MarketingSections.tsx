@@ -98,7 +98,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                 skew-x-12 transition-transform duration-1000 group-hover:translate-x-[300%]"></span>
 
   <span className="relative z-10 flex items-center justify-center gap-3">
-    {t("heroCTA")}
+    Claim Offer Now!
   </span>
 </button>
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center">
