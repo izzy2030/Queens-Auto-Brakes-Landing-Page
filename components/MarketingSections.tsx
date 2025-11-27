@@ -86,7 +86,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     bg-gradient-to-r from-cyan-500 to-blue-600
     hover:from-cyan-400 hover:to-blue-500
     text-white font-bold text-lg md:text-xl
-    px-8 py-4 rounded-full
+    px-8 py-3 rounded-full
     shadow-2xl shadow-cyan-500/50
     transform transition-all duration-500 ease-out
     hover:scale-110 hover:shadow-cyan-400/70
@@ -98,7 +98,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                 skew-x-12 transition-transform duration-1000 group-hover:translate-x-[300%]"></span>
 
   <span className="relative z-10 flex items-center justify-center gap-3">
-    Claim Offer Now!
+    Claim Brake Offer Now!
   </span>
 </button>
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center">
