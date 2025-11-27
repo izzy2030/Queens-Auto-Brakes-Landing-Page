@@ -90,7 +90,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     shadow-2xl shadow-cyan-500/50
     transform transition-all duration-500 ease-out
     hover:scale-110 hover:shadow-cyan-400/70
-    group
+    group cursor-pointer
   "
 >
   {/* Shiny moving gloss effect */}
