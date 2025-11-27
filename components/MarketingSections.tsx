@@ -80,12 +80,30 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
 
             <div className="flex flex-col items-center md:items-start">
               <div className="flex flex-col items-center">
-                <a
-                  href="#book"
-                  className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 btn-gradient text-white text-base md:text-lg font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 cta-hover"
-                >
-                  {t("heroCTA")}
-                </a>
+                <button
+  className="
+    relative overflow-hidden
+    bg-gradient-to-r from-cyan-500 to-blue-600
+    hover:from-cyan-400 hover:to-blue-500
+    text-white font-bold text-xl md:text-2xl
+    px-12 py-6 rounded-full
+    shadow-2xl shadow-cyan-500/50
+    transform transition-all duration-500 ease-out
+    hover:scale-110 hover:shadow-cyan-400/70
+    group
+  "
+>
+  {/* Shiny moving gloss effect */}
+  <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent
+                skew-x-12 transition-transform duration-1000 group-hover:translate-x-[300%]"></span>
+
+  <span className="relative z-10 flex items-center justify-center gap-3">
+    {t("heroCTA")}
+    <svg className="w-7 h-7 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"/>
+    </svg>
+  </span>
+</button>
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center">
                   {t("scarcityLine")}
                 </p>
