@@ -85,8 +85,8 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     relative overflow-hidden
     bg-gradient-to-r from-cyan-500 to-blue-600
     hover:from-cyan-400 hover:to-blue-500
-    text-white font-bold text-xl md:text-2xl
-    px-12 py-6 rounded-full
+    text-white font-bold text-lg md:text-xl
+    px-8 py-4 rounded-full
     shadow-2xl shadow-cyan-500/50
     transform transition-all duration-500 ease-out
     hover:scale-110 hover:shadow-cyan-400/70
@@ -99,7 +99,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
 
   <span className="relative z-10 flex items-center justify-center gap-3">
     {t("heroCTA")}
-    <svg className="w-7 h-7 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"/>
     </svg>
   </span>
