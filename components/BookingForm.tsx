@@ -23,9 +23,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
     time: ''
   });
 
-  // Validation State
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
-
   // Calendar State
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<string>('');
@@ -47,50 +44,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user types
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
   };
 
-  const validateStep1 = () => {
-    const newErrors: {[key: string]: string} = {};
-    
-    if (!formData.firstName.trim()) newErrors.firstName = t('requiredField');
-    if (!formData.lastName.trim()) newErrors.lastName = t('requiredField');
-    
-    if (!formData.email.trim()) {
-      newErrors.email = t('requiredField');
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = t('requiredField');
-    } else if (formData.phone.replace(/\D/g, '').length < 10) {
-      newErrors.phone = 'Phone number must be at least 10 digits';
-    }
-
-    if (!formData.carYear) newErrors.carYear = t('requiredField');
-    if (!formData.carMake.trim()) newErrors.carMake = t('requiredField');
-    if (!formData.carModel.trim()) newErrors.carModel = t('requiredField');
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleNextStep = () => {
-    if (validateStep1()) {
-      setStep(prev => prev + 1);
-    }
-  };
-
+  const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
-
-  const getInputClass = (fieldName: string) => {
-    const baseClass = "mt-1 block w-full px-4 py-2.5 bg-slate-800 border rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 sm:text-sm";
-    return `${baseClass} ${errors[fieldName] ? 'border-red-500' : 'border-slate-600'}`;
-  };
 
   // Calendar Logic
   const daysOfWeek = lang === 'es' 
@@ -99,31 +56,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
 
   const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay();
-
-  // Holidays
-  const fixedHolidays = [
-    "01-01", // New Year's Day
-    "07-04", // Independence Day
-    "12-24", // Christmas Eve
-    "12-25", // Christmas Day
-    "12-31", // New Year's Eve
-  ];
-
-  const blockedDates = [
-    "2024-11-28", // Thanksgiving 2024
-    "2025-05-26", // Memorial Day 2025
-    "2025-09-01", // Labor Day 2025
-    "2025-11-27", // Thanksgiving 2025
-  ];
-
-  const checkIsHoliday = (date: Date) => {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    const mmdd = `${m}-${d}`;
-    const yyyymmdd = `${y}-${m}-${d}`;
-    return fixedHolidays.includes(mmdd) || blockedDates.includes(yyyymmdd);
-  };
 
   const handleDateClick = (year: number, month: number, day: number) => {
     const formattedDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -290,11 +222,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
 
   return (
     <section id="book" className="relative z-10 px-4 sm:px-6 lg:px-8 py-20">
-      <div className="max-w-2xl mx-auto animated-gradient-border p-[3px] rounded-2xl shadow-2xl shadow-blue-500/20">
-        <div className="bg-slate-900/90 backdrop-blur-xl rounded-xl p-6 sm:p-8">
+      <div className="max-w-2xl mx-auto animated-gradient-border shadow-2xl shadow-cyan-500/20">
+        <div className="bg-card/95 backdrop-blur-xl rounded-xl p-6 sm:p-8">
             <div className="text-center">
-            <h2 className="text-3xl font-bold text-white">{t('formTitle')}</h2>
-            <p className="mt-2 text-lg text-slate-300">
+            <h2 className="text-3xl font-bold text-foreground">{t('formTitle')}</h2>
+            <p className="mt-2 text-lg text-foreground/80">
                 {step === 1 && t('formStep1')}
                 {step === 2 && t('formStep2')}
             </p>
@@ -308,48 +240,41 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                 <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('firstName')}</label>
-                        <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} autoComplete="given-name" className={getInputClass('firstName')} />
-                        {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
+                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('firstName')}</label>
+                        <input type="text" name="firstName" required value={formData.firstName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('lastName')}</label>
-                        <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} autoComplete="family-name" className={getInputClass('lastName')} />
-                        {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
+                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('lastName')}</label>
+                        <input type="text" name="lastName" required value={formData.lastName} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('email')}</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} autoComplete="email" className={getInputClass('email')} />
-                        {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('email')}</label>
+                        <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1">{t('mobileNumber')}</label>
-                        <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" autoComplete="tel" className={getInputClass('phone')} />
-                        {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
+                        <label className="block text-sm font-medium text-foreground/80 mb-1">{t('mobileNumber')}</label>
+                        <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} placeholder="(###) ###-####" className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                     </div>
                     </div>
                     <div className="space-y-4 pt-2">
-                        <h3 className="text-xl font-bold text-white">{t('vehicleDetails')}</h3>
+                        <h3 className="text-xl font-bold text-foreground">{t('vehicleDetails')}</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carYear')}</label>
-                                <select name="carYear" value={formData.carYear} onChange={handleInputChange} className={getInputClass('carYear')}>
+                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carYear')}</label>
+                                <select name="carYear" required value={formData.carYear} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm">
                                     <option value="">Select</option>
                                     {years.map(y => <option key={y} value={y}>{y}</option>)}
                                 </select>
-                                {errors.carYear && <p className="text-red-400 text-xs mt-1">{errors.carYear}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carMake')}</label>
-                                <input type="text" name="carMake" value={formData.carMake} onChange={handleInputChange} autoComplete="on" className={getInputClass('carMake')} />
-                                {errors.carMake && <p className="text-red-400 text-xs mt-1">{errors.carMake}</p>}
+                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carMake')}</label>
+                                <input type="text" name="carMake" required value={formData.carMake} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">{t('carModel')}</label>
-                                <input type="text" name="carModel" value={formData.carModel} onChange={handleInputChange} autoComplete="on" className={getInputClass('carModel')} />
-                                {errors.carModel && <p className="text-red-400 text-xs mt-1">{errors.carModel}</p>}
+                                <label className="block text-sm font-medium text-foreground/80 mb-1">{t('carModel')}</label>
+                                <input type="text" name="carModel" required value={formData.carModel} onChange={handleInputChange} className="mt-1 block w-full px-4 py-2.5 bg-input border border-border rounded-md shadow-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring sm:text-sm" />
                             </div>
                         </div>
                     </div>
@@ -358,7 +283,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                     <div className="hidden sm:block"></div>
                     <button 
                         type="button" 
-                        onClick={handleNextStep}
+                        onClick={nextStep}
+                        disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.carYear || !formData.carMake || !formData.carModel}
                         className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 btn-gradient text-white font-bold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {t('nextBtn2')}
@@ -372,18 +298,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                 <div className="animate-fade-in-up">
                     <div className="w-full">
                         <div className="flex items-center justify-between mb-6 px-4">
-                            <button type="button" onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-slate-700 transition-colors">
-                                <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <button type="button" onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-secondary transition-colors">
+                                <svg className="w-6 h-6 text-foreground/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                             </button>
-                            <h3 className="text-xl font-semibold text-white">
+                            <h3 className="text-xl font-semibold text-foreground">
                                 {currentDate.toLocaleDateString(lang, { month: 'long', year: 'numeric' })}
                             </h3>
-                            <button type="button" onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-slate-700 transition-colors">
-                                <svg className="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                            <button type="button" onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-secondary transition-colors">
+                                <svg className="w-6 h-6 text-foreground/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path></svg>
                             </button>
                         </div>
                         <div className="grid grid-cols-7 gap-1 text-center mb-2">
-                            {daysOfWeek.map(d => <div key={d} className="font-semibold text-slate-400 text-sm py-2">{d}</div>)}
+                            {daysOfWeek.map(d => <div key={d} className="font-semibold text-foreground/60 text-sm py-2">{d}</div>)}
                         </div>
                         <div className="grid grid-cols-7 gap-1 text-center">
                             {Array.from({ length: getFirstDayOfMonth(currentDate.getFullYear(), currentDate.getMonth()) }).map((_, i) => (
@@ -398,17 +324,15 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                                 
                                 const dateStr = `${cellDate.getFullYear()}-${String(cellDate.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
                                 const isPast = cellDate < today;
-                                const isHoliday = checkIsHoliday(cellDate);
-                                const isDisabled = isPast || isHoliday;
                                 const isSelected = selectedDate === dateStr;
                                 
                                 return (
                                     <div 
                                         key={d}
-                                        onClick={() => !isDisabled && handleDateClick(currentDate.getFullYear(), currentDate.getMonth(), d)}
+                                        onClick={() => !isPast && handleDateClick(currentDate.getFullYear(), currentDate.getMonth(), d)}
                                         className={`
                                             w-10 h-10 flex items-center justify-center rounded-full cursor-pointer text-sm transition-colors mx-auto
-                                            ${isDisabled ? 'text-slate-600 cursor-not-allowed' : 'hover:bg-slate-700'}
+                                            ${isPast ? 'text-foreground/40 cursor-not-allowed' : 'hover:bg-secondary'}
                                             ${isSelected ? 'bg-sky-500 text-white font-bold hover:bg-sky-600' : ''}
                                         `}
                                     >
@@ -420,8 +344,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                     </div>
 
                     {selectedDate && (
-                        <div className="mt-8 border-t border-slate-700 pt-6">
-                            <h4 className="text-xl font-semibold text-white mb-4">{t('availableTimes')}</h4>
+                        <div className="mt-8 border-t border-border pt-6">
+                            <h4 className="text-xl font-semibold text-foreground mb-4">{t('availableTimes')}</h4>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                 {availableTimes.length > 0 ? availableTimes.map(time => (
                                     <button
@@ -432,21 +356,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
                                             p-2 border rounded-md transition-colors duration-200 text-sm
                                             ${formData.time === time 
                                                 ? 'bg-sky-500 text-white border-sky-500' 
-                                                : 'border-slate-600 text-slate-200 hover:bg-slate-700'}
+                                                : 'border-border text-foreground hover:bg-secondary'}
                                         `}
                                     >
                                         {time}
                                     </button>
                                 )) : (
-                                    <p className="text-slate-400 col-span-full text-center">{t('slotsDone' as any)}</p>
+                                    <p className="text-foreground/80 col-span-full text-center">{t('slotsDone' as any)}</p>
                                 )}
                             </div>
                         </div>
                     )}
 
-                    <div className="mt-8 flex flex-col items-center gap-4 border-t border-slate-700 pt-6">
+                    <div className="mt-8 flex flex-col items-center gap-4 border-t border-border pt-6">
                         <div className="w-full flex flex-col sm:flex-row sm:justify-between gap-4">
-                            <button type="button" onClick={prevStep} className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-slate-700 text-white font-semibold rounded-full shadow-lg hover:bg-slate-600">{t('backBtn')}</button>
+                            <button type="button" onClick={prevStep} className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-semibold rounded-full shadow-lg hover:bg-secondary/80">{t('backBtn')}</button>
                             <button 
                                 type="submit" 
                                 disabled={!formData.time || isSubmitting}

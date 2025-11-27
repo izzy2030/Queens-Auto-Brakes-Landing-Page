@@ -20,6 +20,7 @@ import {
   ParallaxSection,
   ServiceAreaSection
 } from './components/MarketingSections';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<LangType>('en');
@@ -56,51 +57,53 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="relative z-10 text-slate-300">
-       {/* Background Elements */}
-      <div className="background-wrapper">
-         <div className="background-top-gradient"></div>
-         <div className="background-glow-1"></div>
-         <div className="background-glow-2"></div>
-         <div className="background-glow-center"></div>
+    <ThemeProvider>
+      <div className="relative z-10 text-foreground">
+        {/* Background Elements */}
+        <div className="background-wrapper">
+          <div className="background-top-gradient"></div>
+          <div className="background-glow-1"></div>
+          <div className="background-glow-2"></div>
+          <div className="background-glow-center"></div>
+        </div>
+
+        <div className="relative z-10 max-w-[1200px] mx-auto">
+          <Navbar lang={lang} setLang={handleLangChange} t={t} />
+
+          <HeroSection t={t} />
+
+          <PromiseSection t={t} />
+
+          <BookingForm t={t} lang={lang} />
+
+          <Testimonials t={t} />
+
+          <WhenToReplaceSection t={t} />
+
+          <ExpertBrakeSection t={t} />
+
+          <WhyImportantSection t={t} />
+
+          <TrustSignalsSection t={t} />
+
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent my-16 max-w-8xl mx-auto"></div>
+
+          <AboutSection t={t} />
+
+          <ParallaxSection t={t} />
+
+          <ServiceAreaSection t={t} />
+
+          <FAQ t={t} />
+
+          <Footer t={t} />
+        </div>
+
+        <Modals t={t} />
+
+        <StickyBanner t={t} />
       </div>
-
-      <div className="relative z-10 max-w-[1200px] mx-auto">
-        <Navbar lang={lang} setLang={handleLangChange} t={t} />
-
-        <HeroSection t={t} />
-
-        <PromiseSection t={t} />
-
-        <BookingForm t={t} lang={lang} />
-
-        <Testimonials t={t} />
-
-        <WhenToReplaceSection t={t} />
-
-        <ExpertBrakeSection t={t} />
-
-        <WhyImportantSection t={t} />
-
-        <TrustSignalsSection t={t} />
-
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent my-16 max-w-8xl mx-auto"></div>
-
-        <AboutSection t={t} />
-
-        <ParallaxSection t={t} />
-
-        <ServiceAreaSection t={t} />
-
-        <FAQ t={t} />
-
-        <Footer t={t} />
-      </div>
-
-      <Modals t={t} />
-
-      <StickyBanner t={t} />
-    </div>
+    </ThemeProvider>
   );
 };
 
