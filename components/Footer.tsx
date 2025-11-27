@@ -7,10 +7,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ t }) => {
   return (
-    <footer className="mt-16 py-8 border-t border-border">
-      <div className="max-w-8xl mx-auto px-6 text-center text-sm text-foreground/80">
+    <footer className="mt-16 py-8 border-t border-slate-800">
+      <div className="max-w-8xl mx-auto px-6 text-center text-sm text-slate-400">
         <p>
-          &copy; 2024 Queens Auto Service. All Rights Reserved. | 
+          &copy; {new Date().getFullYear()} Queens Auto Service. All Rights Reserved. | 
           <a href="https://queensautoserviceselgin.com/privacy-policy/" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors ml-1">{t('privacyPolicy')}</a> | 
           <a href="https://queensautoserviceselgin.com/terms-of-use/" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-colors ml-1">{t('termsOfUse')}</a>
         </p>
