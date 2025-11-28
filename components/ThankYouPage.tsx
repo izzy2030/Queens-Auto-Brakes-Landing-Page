@@ -54,33 +54,33 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
     const state = window.history.state as BookingData;
     if (state) {
       setData(state);
-      
+
       // Setup Audio (but don't play yet)
       const audioUrl = state.audioUrl || sessionStorage.getItem('customAudioUrl');
       if (audioUrl && !audioRef.current) {
-          audioRef.current = new Audio(audioUrl);
-          audioRef.current.onended = () => setIsPlaying(false);
-          audioRef.current.onplay = () => setIsPlaying(true);
-          audioRef.current.onpause = () => setIsPlaying(false);
+        audioRef.current = new Audio(audioUrl);
+        audioRef.current.onended = () => setIsPlaying(false);
+        audioRef.current.onplay = () => setIsPlaying(true);
+        audioRef.current.onpause = () => setIsPlaying(false);
       }
     }
   }, []);
 
   const handleStartAudio = () => {
-      setHasInteracted(true);
-      if (audioRef.current) {
-          audioRef.current.play().catch(e => console.log("Play failed:", e));
-      }
+    setHasInteracted(true);
+    if (audioRef.current) {
+      audioRef.current.play().catch(e => console.log("Play failed:", e));
+    }
   };
 
   const toggleAudio = () => {
-      if (audioRef.current) {
-          if (isPlaying) {
-              audioRef.current.pause();
-          } else {
-              audioRef.current.play();
-          }
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
       }
+    }
   };
 
   const couponCode = data?.couponCode || '276KJO';
@@ -98,8 +98,8 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               className="h-10 w-auto"
               src="https://queensautoserviceselgin.com/wp-content/uploads/2024/11/Logo-White.webp"
               onError={(e) =>
-                ((e.target as HTMLImageElement).src =
-                  "https://placehold.co/200x50/1e293b/ffffff?text=Queens+Auto")
+              ((e.target as HTMLImageElement).src =
+                "https://placehold.co/200x50/1e293b/ffffff?text=Queens+Auto")
               }
             />
           </div>
@@ -159,53 +159,53 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               ></path>
             </svg>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-4">
             You're All Set, <span className="text-cyan-400">{displayName}!</span>
           </h1>
           <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto">
             Your appointment is confirmed. We've saved your spot and sent a
             reminder to your phone.
           </p>
-          
+
           {/* Audio Player UI - Only show if audio exists */}
           {hasAudio && (
             !hasInteracted ? (
               <div className="mb-12">
-                  <button
-                      onClick={handleStartAudio}
-                      className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] hover:scale-105 active:scale-95 animate-pulse"
+                <button
+                  onClick={handleStartAudio}
+                  className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:from-cyan-400 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] hover:scale-105 active:scale-95 animate-pulse"
+                >
+                  <svg
+                    className="w-5 h-5 mr-3 fill-current"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                      <svg 
-                        className="w-5 h-5 mr-3 fill-current" 
-                        viewBox="0 0 24 24" 
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                      Play a Message for {displayName}
-                  </button>
-               </div>
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Play a Message for {displayName}
+                </button>
+              </div>
             ) : (
               <div className="mb-10 w-full max-w-sm mx-auto cursor-pointer" onClick={toggleAudio}>
-                  <div className={`bg-white/10 rounded-full p-2 flex items-center space-x-3 transition-all ${isPlaying ? 'ring-2 ring-cyan-400/50' : ''}`}>
+                <div className={`bg-white/10 rounded-full p-2 flex items-center space-x-3 transition-all ${isPlaying ? 'ring-2 ring-cyan-400/50' : ''}`}>
                   <span className="text-white text-2xl">{isPlaying ? '🔊' : '🔇'}</span>
                   <span className="text-white text-sm">{isPlaying ? 'Playing...' : 'Click to Play Message'}</span>
-                  
+
                   {isPlaying && (
-                      <div className="flex-grow flex items-center justify-between space-x-0.5 h-6">
-                          {[...Array(15)].map((_, i) => (
-                              <div
-                              key={i}
-                              className="w-1.5 bg-cyan-400/60 rounded-full animate-pulse"
-                              style={{ 
-                                  height: `${Math.random() * 100}%`,
-                                  animationDelay: `-${Math.random()}s` 
-                              }}
-                              ></div>
-                          ))}
-                      </div>
+                    <div className="flex-grow flex items-center justify-between space-x-0.5 h-6">
+                      {[...Array(15)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="w-1.5 bg-cyan-400/60 rounded-full animate-pulse"
+                          style={{
+                            height: `${Math.random() * 100}%`,
+                            animationDelay: `-${Math.random()}s`
+                          }}
+                        ></div>
+                      ))}
+                    </div>
                   )}
-                  </div>
+                </div>
               </div>
             )
           )}
@@ -260,7 +260,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
               </div>
             </div>
             <div className="bg-[#111827] rounded-lg p-8 text-left border border-gray-800">
-              <h3 className="text-lg font-bold text-white mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">
                 What Happens Next?
               </h3>
               <ol className="list-decimal list-inside space-y-3 text-gray-400">
@@ -277,7 +277,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3 className="text-lg font-medium text-white mb-2">
                   Need to Reschedule?
                 </h3>
                 <p className="text-gray-400 mb-6">
@@ -291,7 +291,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ lang = 'en' }) => {
                 </a>
               </div>
               <div className="bg-[#111827] rounded-lg p-8 border border-gray-800">
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3 className="text-lg font-medium text-white mb-2">
                   Where to Find Us
                 </h3>
                 <p className="text-gray-400 mb-6">

@@ -35,9 +35,8 @@ const StickyBanner: React.FC<StickyBannerProps> = ({ t }) => {
   return (
     <>
       <div
-        className={`hidden md:flex fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
+        className={`hidden md:flex fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+          }`}
       >
         <div className="bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 rounded-2xl shadow-2xl w-[900px] max-w-[90vw]">
           <div className="px-8 py-5 flex items-center justify-between gap-6">
@@ -48,7 +47,7 @@ const StickyBanner: React.FC<StickyBannerProps> = ({ t }) => {
                 </svg>
               </div>
               <div>
-                <h3 className="text-white font-bold text-xl">{t('heroCTA')}</h3>
+                <h3 className="text-white font-medium text-xl">{t('heroCTA')}</h3>
                 <p className="text-white/90 text-sm">{t('scarcityLine')}</p>
               </div>
             </div>
@@ -67,9 +66,8 @@ const StickyBanner: React.FC<StickyBannerProps> = ({ t }) => {
           const bookingForm = document.getElementById('book');
           bookingForm?.scrollIntoView({ behavior: 'smooth' });
         }}
-        className={`md:hidden fixed bottom-4 left-4 right-4 z-50 transform transition-all duration-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-        }`}
+        className={`md:hidden fixed bottom-4 left-4 right-4 z-50 transform transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+          }`}
       >
         <div className="bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 px-6 py-4 rounded-2xl shadow-2xl">
           <div className="flex items-center justify-between gap-3">

@@ -18,7 +18,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
             {t("limitedSlots")}
           </span>
           <h1
-            className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-6 animate-on-scroll fade-up delay-1"
+            className="text-[36px] md:text-[42px] font-semibold text-white leading-relaxed mb-6 animate-on-scroll fade-up delay-1"
             dangerouslySetInnerHTML={{ __html: t("heroTitle") }}
           ></h1>
           <p className="text-lg text-white/70 mx-auto max-w-2xl animate-on-scroll fade-up delay-2">
@@ -36,8 +36,8 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
                   alt="New Brakes"
                   className="w-full h-auto transition-transform duration-700 hover:scale-110"
                   onError={(e) =>
-                    ((e.target as HTMLImageElement).src =
-                      "https://placehold.co/600x400/1e293b/ffffff?text=Brake+Service")
+                  ((e.target as HTMLImageElement).src =
+                    "https://placehold.co/600x400/1e293b/ffffff?text=Brake+Service")
                   }
                 />
               </div>
@@ -81,7 +81,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
             <div className="flex flex-col items-center md:items-start">
               <div className="flex flex-col items-center">
                 <button
-  className="
+                  className="
     relative overflow-hidden
     bg-gradient-to-r from-cyan-500 to-blue-600
     hover:from-cyan-400 hover:to-blue-500
@@ -92,15 +92,15 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
     hover:scale-110 hover:shadow-cyan-400/70
     group cursor-pointer
   "
->
-  {/* Shiny moving gloss effect */}
-  <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent
+                >
+                  {/* Shiny moving gloss effect */}
+                  <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent
                 skew-x-12 transition-transform duration-1000 group-hover:translate-x-[300%]"></span>
 
-  <span className="relative z-10 flex items-center justify-center gap-3">
-    {t('heroClaimOffer')}
-  </span>
-</button>
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    {t('heroClaimOffer')}
+                  </span>
+                </button>
                 <p className="mt-2 text-sm text-orange-400 italic font-semibold text-center">
                   {t("scarcityLine")}
                 </p>
@@ -183,28 +183,28 @@ const FlashlightPromiseCard: React.FC<{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.6), transparent 40%)`,
         }}
       />
-      
+
       {/* Content Container */}
       <div className="relative h-full rounded-2xl bg-[#0f172a] p-8 flex flex-col items-center text-center overflow-hidden">
-         {/* Background Glow */}
-         <div
-            className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            style={{
-              background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
-            }}
-          />
-          
-          <div className="relative z-10 flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-blue-500/20 transition-colors">
-              {icon}
-            </div>
-            <h4 className="font-bold text-white text-xl mb-3">
-              {title}
-            </h4>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              {body}
-            </p>
+        {/* Background Glow */}
+        <div
+          className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
+          }}
+        />
+
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-blue-500/20 transition-colors">
+            {icon}
           </div>
+          <h4 className="font-medium text-white text-xl mb-3">
+            {title}
+          </h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            {body}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -273,7 +273,7 @@ export const PromiseSection: React.FC<SectionProps> = ({ t }) => {
   return (
     <section className="mt-20 max-w-8xl mx-auto px-6 animate-on-scroll fade-up delay-1">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-white mb-4">
+        <h2 className="text-3xl font-medium text-white mb-4">
           {t("promiseTitle")}
         </h2>
         <p className="text-lg text-slate-300 max-w-3xl mx-auto">
@@ -299,7 +299,7 @@ export const PromiseSection: React.FC<SectionProps> = ({ t }) => {
 export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
   <section className="mt-16 p-6 md:p-12 rounded-2xl max-w-8xl mx-auto animate-on-scroll fade-up delay-1">
     <div className="text-center">
-      <h2 className="text-3xl md:text-4xl font-bold text-white">
+      <h2 className="text-3xl md:text-4xl font-medium text-white">
         {t("whenToReplaceTitle")}
       </h2>
       <p className="mt-4 max-w-3xl mx-auto text-lg text-slate-300">
@@ -309,7 +309,7 @@ export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
     <div className="mt-12 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div className="space-y-8">
         <div>
-          <h3 className="text-2xl font-bold text-white mb-4">
+          <h3 className="text-2xl font-medium text-white mb-4">
             {t("watchSignsTitle")}
           </h3>
           <ul className="space-y-4">
@@ -340,7 +340,7 @@ export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
           </ul>
         </div>
         <div className="p-6 rounded-lg text-left">
-          <h3 className="text-xl font-bold text-white">{t("dontWaitTitle")}</h3>
+          <h3 className="text-xl font-medium text-white">{t("dontWaitTitle")}</h3>
           <p className="mt-2 text-slate-300">{t("dontWaitBody")}</p>
         </div>
       </div>
@@ -389,34 +389,34 @@ const FlashlightCard: React.FC<{
         }}
       />
       <div className="relative h-full rounded-xl bg-[#0f172a] p-6 flex justify-between items-center overflow-hidden">
-         <div
-            className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            style={{
-              background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
-            }}
+        <div
+          className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
+          }}
+        />
+        <div className="relative z-10">
+          <h4 className="text-white text-lg font-medium mb-1 text-left">
+            {title}
+          </h4>
+          <p className="text-slate-300 text-sm opacity-85 text-left">
+            {body}
+          </p>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-cyan-400 flex-shrink-0 ml-4 relative z-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 5l7 7-7 7"
           />
-          <div className="relative z-10">
-              <h4 className="text-white text-lg font-semibold mb-1 text-left">
-                {title}
-              </h4>
-              <p className="text-slate-300 text-sm opacity-85 text-left">
-                {body}
-              </p>
-          </div>
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-cyan-400 flex-shrink-0 ml-4 relative z-10"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+        </svg>
       </div>
     </div>
   );
@@ -475,7 +475,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
             </svg>
             <span>{t("brakesServiced")}</span>
           </p>
-          <h3 className="text-3xl font-bold text-white mb-4">
+          <h3 className="text-3xl font-medium text-white mb-4">
             {t("expertRepairTitle")}
           </h3>
           <p className="text-lg text-slate-300 mb-8">
@@ -498,7 +498,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
             ))}
           </ul>
           <div className="mt-8 text-left">
-            <h3 ref={ref} className="text-white text-3xl font-bold">
+            <h3 ref={ref} className="text-white text-3xl font-medium">
               {count.toLocaleString()}+ Happy Customers
             </h3>
             <p className="text-gray-400 text-base mt-2">
@@ -525,7 +525,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
   <section className="mt-16 p-6 md:p-12 rounded-2xl max-w-8xl mx-auto animate-on-scroll fade-up delay-1">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 className="text-3xl font-bold mb-5 text-white">
+        <h2 className="text-3xl font-medium mb-5 text-white">
           {t("whyImportantTitle")}
         </h2>
         <p className="text-lg max-w-3xl mx-auto mb-12 opacity-85 text-white">
@@ -553,7 +553,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
               <path d="M16.24 7.76l2.83-2.83"></path>
             </svg>
             <div>
-              <p className="text-xl font-bold text-white">{t("pain1Title")}</p>
+              <p className="text-xl font-medium text-white">{t("pain1Title")}</p>
               <p className="text-base text-slate-300 opacity-85">
                 {t("pain1Body")}
               </p>
@@ -565,7 +565,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
                 {n === 2 ? "⚠️" : "💸"}
               </span>
               <div>
-                <p className="text-xl font-bold text-white">
+                <p className="text-xl font-medium text-white">
                   {t(`pain${n}Title` as any)}
                 </p>
                 <p className="text-base text-slate-300 opacity-85">
@@ -626,30 +626,30 @@ const FlashlightTrustCard: React.FC<{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.6), transparent 40%)`,
         }}
       />
-      
+
       {/* Content Container */}
       <div className="relative h-full rounded-xl bg-[#0f172a] p-6 flex flex-col items-center text-center overflow-hidden">
-         {/* Background Glow */}
-         <div
-            className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            style={{
-              background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
-            }}
-          />
-          
-          <div className="relative z-10 flex flex-col items-center">
-            <div className={`flex items-center justify-center h-12 w-12 rounded-full bg-${color}-500/10 text-${color}-400 mx-auto mb-4`}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                {icon}
-              </svg>
-            </div>
-            <h3 className="text-lg font-bold text-slate-100">
-              {title}
-            </h3>
-            <p className="text-sm text-slate-400 mt-1">
-              {sub}
-            </p>
+        {/* Background Glow */}
+        <div
+          className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(56, 189, 248, 0.1), transparent 40%)`,
+          }}
+        />
+
+        <div className="relative z-10 flex flex-col items-center">
+          <div className={`flex items-center justify-center h-12 w-12 rounded-full bg-${color}-500/10 text-${color}-400 mx-auto mb-4`}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+              {icon}
+            </svg>
           </div>
+          <h3 className="text-lg font-medium text-slate-100">
+            {title}
+          </h3>
+          <p className="text-sm text-slate-400 mt-1">
+            {sub}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -706,7 +706,7 @@ export const TrustSignalsSection: React.FC<SectionProps> = ({ t }) => (
 export const AboutSection: React.FC<SectionProps> = ({ t }) => (
   <section className="mt-16 rounded-2xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center max-w-8xl mx-auto">
     <div>
-      <h2 className="text-3xl font-bold text-white">{t("aboutTitle")}</h2>
+      <h2 className="text-3xl font-medium text-white">{t("aboutTitle")}</h2>
       <p className="mt-4 text-slate-300 animate-on-scroll fade-up delay-1">
         {t("aboutBody")}
       </p>
@@ -739,8 +739,8 @@ export const AboutSection: React.FC<SectionProps> = ({ t }) => (
           alt="Queens Auto Shop"
           className="w-full transition-transform duration-700 hover:scale-110"
           onError={(e) =>
-            ((e.target as HTMLImageElement).src =
-              "https://placehold.co/600x400/1e293b/ffffff?text=Our+Shop")
+          ((e.target as HTMLImageElement).src =
+            "https://placehold.co/600x400/1e293b/ffffff?text=Our+Shop")
           }
         />
       </div>
@@ -757,7 +757,7 @@ export const ParallaxSection: React.FC<SectionProps> = ({ t }) => (
     }}
   >
     <div className="relative z-10 text-center max-w-3xl mx-auto">
-      <h2 className="text-4xl font-extrabold text-white">
+      <h2 className="text-4xl font-medium text-white">
         {t("parallaxTitle")}
       </h2>
       <p className="mt-4 text-lg text-slate-200 animate-on-scroll fade-up delay-2">
@@ -771,7 +771,7 @@ export const ServiceAreaSection: React.FC<SectionProps> = ({ t }) => (
   <section className="mt-16 max-w-8xl mx-auto px-6">
     <div className="grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 className="text-3xl font-bold text-white">
+        <h2 className="text-3xl font-medium text-white">
           {t("serviceAreaTitle")}
         </h2>
         <div className="w-24 h-1 bg-cyan-400 mt-4 mb-6"></div>

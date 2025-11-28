@@ -10,8 +10,8 @@ module.exports = {
         "8xl": "90rem",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Outfit', 'sans-serif'],
+        sans: ['Rethink Sans', 'sans-serif'],
+        heading: ['Cal Sans', 'sans-serif'],
       }
     },
   },
