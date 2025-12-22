@@ -14,11 +14,12 @@ const Modals: React.FC<ModalsProps> = ({ t }) => {
 
     const handleMouseLeave = (e: MouseEvent) => {
       const exitIntentShown = sessionStorage.getItem('exitIntentShown');
+      // Trigger when mouse leaves through top of page (intent to close tab/navigate away)
       if (e.clientY <= 0 && !exitIntentShown) {
         exitTimer = setTimeout(() => {
           setShowExit(true);
           sessionStorage.setItem('exitIntentShown', 'true');
-        }, 1000);
+        }, 200); // Reduced from 1000ms to 200ms for snappier response
       }
     };
 
