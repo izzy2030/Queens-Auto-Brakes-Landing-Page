@@ -28,7 +28,10 @@ function GlobalObservers() {
           }
         });
       },
-      { threshold: 0.12 }
+      {
+        threshold: 0.05,
+        rootMargin: "0px 0px 100px 0px"  // Trigger 100px before entering viewport
+      }
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
