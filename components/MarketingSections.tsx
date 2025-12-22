@@ -32,7 +32,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
             <div className="glass-card relative rounded-2xl p-3 shadow-xl">
               <div className="bg-gray-900 rounded-xl overflow-hidden">
                 <img
-                  src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Queens-Auto-Brake-Repair-Before-and-After-0001.webp"
+                  src="/images/Queens-Auto-Brake-Repair-Before-and-After-0001.webp"
                   alt="New Brakes"
                   className="w-full h-auto transition-transform duration-700 hover:scale-110"
                   onError={(e) =>
@@ -81,6 +81,7 @@ export const HeroSection: React.FC<SectionProps> = ({ t }) => {
             <div className="flex flex-col items-center md:items-start">
               <div className="flex flex-col items-center">
                 <button
+                  onClick={() => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })}
                   className="
     relative overflow-hidden
     bg-gradient-to-r from-cyan-500 to-blue-600
@@ -457,7 +458,7 @@ export const ExpertBrakeSection: React.FC<SectionProps> = ({ t }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-12">
         <div className="rounded-2xl overflow-hidden shadow-lg">
           <img
-            src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Expert-Brake-Repair-with-Financing-Available-Auto-Service-Guide.webp"
+            src="/images/disc-brake-service-mechanic-elgin-il.webp"
             alt="Brake repair"
             className="w-full transition-transform duration-700 hover:scale-110"
           />
@@ -581,7 +582,7 @@ export const WhyImportantSection: React.FC<SectionProps> = ({ t }) => (
       </div>
       <div className="rounded-2xl overflow-hidden shadow-lg mt-8 md:mt-0">
         <img
-          src="https://queensautoserviceselgin.com/wp-content/uploads/2025/08/Nation-Wide-Protection-Expert-Brake-Disc-Repair-Replacement.webp"
+          src="/images/damaged-brake-rotor-elgin-mechanic.webp"
           alt="Worn brakes"
           className="w-full transition-transform duration-700 hover:scale-110"
         />
@@ -796,15 +797,18 @@ export const ServiceAreaSection: React.FC<SectionProps> = ({ t }) => (
         </ul>
       </div>
       <div className="h-64 md:h-80 rounded-2xl overflow-hidden glass-card">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2959.563065668352!2d-88.2383856845781!3d42.11808097920364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f0eb896c3453d%3A0x7d253942398246!2sQueens%20Auto%20Services!5e0!3m2!1sen!2sus!4v1689104000000!5m2!1sen!2sus"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <a
+          href="https://maps.google.com/?q=1303+Dundee+Ave+Elgin+IL+60120"
+          target="_blank"
+          rel="noreferrer"
+          className="block w-full h-full"
+        >
+          <img
+            src="/images/Queens-Elgin-map.webp"
+            alt="Queens Auto Services Elgin - 1303 Dundee Ave, Elgin, IL 60120"
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </a>
       </div>
     </div>
   </section>

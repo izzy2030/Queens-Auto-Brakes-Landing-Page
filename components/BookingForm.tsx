@@ -236,7 +236,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ t, lang }) => {
     };
 
     // Use the TEST webhook URL for now
-    const TEST_WEBHOOK_URL = "https://n8n.queensautoservices.com/webhook-test/122050bb-db0e-48e3-857f-e794f563e0db";
+    const TEST_WEBHOOK_URL = "https://n8n.queensautoservices.com/webhook-test/5be99bf2-b19b-49f7-82b3-431fb1748b27";
 
     try {
       const response = await fetch(TEST_WEBHOOK_URL, {
