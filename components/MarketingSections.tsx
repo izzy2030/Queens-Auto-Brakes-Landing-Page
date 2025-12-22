@@ -347,8 +347,8 @@ export const WhenToReplaceSection: React.FC<SectionProps> = ({ t }) => (
       </div>
       <div className="rounded-2xl overflow-hidden">
         <img
-          src="https://queensautoservices.com/wp-content/uploads/Worned-out-brake-pads-vs-New-pads.webp"
-          alt="Comparison"
+          src="/images/Worned-out-brake-pads-vs-New-pads.webp"
+          alt="Worn out brake pads vs new brake pads comparison"
           className="w-full transition-transform duration-700 hover:scale-110"
         />
       </div>
