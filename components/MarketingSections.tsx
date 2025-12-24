@@ -736,7 +736,7 @@ export const AboutSection: React.FC<SectionProps> = ({ t }) => (
     <div>
       <div className="rounded-2xl overflow-hidden shadow-lg w-full">
         <img
-          src="https://queensautoserviceselgin.com/wp-content/uploads/2025/05/Queens-Elgin-Street-View-001.png"
+          src="https://storage.googleapis.com/queens-videos/Queens-Auto-Services-Elgin-Front-View-Shop-001.webp"
           alt="Queens Auto Shop"
           className="w-full transition-transform duration-700 hover:scale-110"
           onError={(e) =>
