@@ -14,14 +14,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       <div className="max-w-8xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
-          <img 
-            src="https://queensautoserviceselgin.com/wp-content/uploads/2024/11/Logo-White.webp" 
-            alt="Queens Auto Services Logo" 
-            className="h-10 w-auto" 
+          <img
+            src="https://storage.googleapis.com/queens-videos/Logo-White.webp"
+            alt="Queens Auto Services Logo"
+            className="h-10 w-auto"
             onError={(e) => {
-              (e.target as HTMLImageElement).onerror = null; 
+              (e.target as HTMLImageElement).onerror = null;
               (e.target as HTMLImageElement).src='https://placehold.co/200x50/0f172a/ffffff?text=Queens+Auto';
-            }} 
+            }}
           />
         </div>
         
